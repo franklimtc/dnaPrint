@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dnaPrintModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dnaPrint.dbo.vw_disponibilidade3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_disponibilidade3">
+    <Key>
+      <PropertyRef Name="idEquipamento" />
+    </Key>
+    <Property Name="idEquipamento" Type="int" Nullable="false" />
+    <Property Name="UF" Type="varchar" MaxLength="2" />
+    <Property Name="Cidade" Type="varchar" MaxLength="35" />
+    <Property Name="Unidade" Type="varchar(max)" />
+    <Property Name="Cod" Type="varchar(max)" />
+    <Property Name="Ambiente" Type="varchar(max)" />
+    <Property Name="Fila" Type="varchar" MaxLength="30" />
+    <Property Name="serie" Type="varchar" MaxLength="15" />
+    <Property Name="ip" Type="varchar" MaxLength="15" />
+    <Property Name="data" Type="datetime" />
+    <Property Name="dtAtivacao" Type="datetime" />
+    <Property Name="qtdDias" Type="int" />
+  </EntityType>
+  <EntityContainer Name="dnaPrintModelStoreContainer">
+    <EntitySet Name="vw_disponibilidade3" EntityType="Self.vw_disponibilidade3" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_disponibilidade3].[idEquipamento] AS [idEquipamento], 
+    [vw_disponibilidade3].[UF] AS [UF], 
+    [vw_disponibilidade3].[Cidade] AS [Cidade], 
+    [vw_disponibilidade3].[Unidade] AS [Unidade], 
+    [vw_disponibilidade3].[Cod] AS [Cod], 
+    [vw_disponibilidade3].[Ambiente] AS [Ambiente], 
+    [vw_disponibilidade3].[Fila] AS [Fila], 
+    [vw_disponibilidade3].[serie] AS [serie], 
+    [vw_disponibilidade3].[ip] AS [ip], 
+    [vw_disponibilidade3].[data] AS [data], 
+    [vw_disponibilidade3].[dtAtivacao] AS [dtAtivacao], 
+    [vw_disponibilidade3].[qtdDias] AS [qtdDias]
+    FROM [dbo].[vw_disponibilidade3] AS [vw_disponibilidade3]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

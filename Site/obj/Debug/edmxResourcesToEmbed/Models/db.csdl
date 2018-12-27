@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dnaPrintModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="vw_disponibilidade3">
+    <Key>
+      <PropertyRef Name="idEquipamento" />
+    </Key>
+    <Property Name="idEquipamento" Type="Int32" Nullable="false" />
+    <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Cidade" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="Unidade" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Cod" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ambiente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fila" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="serie" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="data" Type="DateTime" Precision="3" />
+    <Property Name="dtAtivacao" Type="DateTime" Precision="3" />
+    <Property Name="qtdDias" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="dnaPrintDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="vw_disponibilidade3" EntityType="Self.vw_disponibilidade3" />
+  </EntityContainer>
+</Schema>

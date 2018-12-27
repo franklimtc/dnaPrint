@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dnaPrintModelStoreContainer" CdmEntityContainer="dnaPrintDB">
+    <EntitySetMapping Name="vw_disponibilidade3">
+      <EntityTypeMapping TypeName="dnaPrintModel.vw_disponibilidade3">
+        <MappingFragment StoreEntitySet="vw_disponibilidade3">
+          <ScalarProperty Name="idEquipamento" ColumnName="idEquipamento" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+          <ScalarProperty Name="Cod" ColumnName="Cod" />
+          <ScalarProperty Name="Ambiente" ColumnName="Ambiente" />
+          <ScalarProperty Name="Fila" ColumnName="Fila" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="dtAtivacao" ColumnName="dtAtivacao" />
+          <ScalarProperty Name="qtdDias" ColumnName="qtdDias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

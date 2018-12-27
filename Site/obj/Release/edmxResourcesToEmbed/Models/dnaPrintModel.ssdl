@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EquipamentosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CadastroCidade">
+    <Key>
+      <PropertyRef Name="idCidade" />
+    </Key>
+    <Property Name="idCidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEstado" Type="int" />
+    <Property Name="cidade" Type="varchar" MaxLength="35" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CadastroEquipamentos">
+    <Key>
+      <PropertyRef Name="idEquipamento" />
+    </Key>
+    <Property Name="idEquipamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEstado" Type="int" />
+    <Property Name="idCidade" Type="int" />
+    <Property Name="idLocalidade" Type="int" />
+    <Property Name="idSetor" Type="int" />
+    <Property Name="idModeloEquipamento" Type="int" />
+    <Property Name="ip" Type="varchar" MaxLength="15" />
+    <Property Name="fabricante" Type="varchar" MaxLength="50" />
+    <Property Name="serie" Type="varchar" MaxLength="15" />
+    <Property Name="nome" Type="varchar" MaxLength="30" />
+    <Property Name="dtAtivacao" Type="datetime" />
+    <Property Name="dtDesativacao" Type="datetime" />
+    <Property Name="leituraDireta" Type="bit" />
+    <Property Name="dtModificacao" Type="datetime" />
+    <Property Name="cor" Type="bit" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="CadastroEstado">
+    <Key>
+      <PropertyRef Name="idEstado" />
+    </Key>
+    <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UF" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CadastroSetor">
+    <Key>
+      <PropertyRef Name="idSetor" />
+    </Key>
+    <Property Name="idSetor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idLocalidade" Type="int" />
+    <Property Name="descricao" Type="varchar(max)" Nullable="false" />
+    <Property Name="centroCusto" Type="varchar(max)" Nullable="false" />
+    <Property Name="status" Type="char" MaxLength="1" />
+    <Property Name="cotaMensal" Type="int" />
+  </EntityType>
+  <EntityType Name="CadastroUnidade">
+    <Key>
+      <PropertyRef Name="idLocalidade" />
+    </Key>
+    <Property Name="idLocalidade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCidade" Type="int" />
+    <Property Name="descricao" Type="varchar(max)" Nullable="false" />
+    <Property Name="endereco" Type="varchar(max)" />
+    <Property Name="telefone" Type="varchar(max)" />
+    <Property Name="contato" Type="varchar" MaxLength="20" />
+    <Property Name="status" Type="char" MaxLength="1" />
+    <Property Name="razaoSocial" Type="varchar(max)" />
+    <Property Name="numero" Type="int" />
+    <Property Name="bairro" Type="varchar(max)" />
+    <Property Name="cep" Type="varchar(max)" />
+    <Property Name="cnpj" Type="varchar(max)" />
+    <Property Name="ie" Type="varchar(max)" />
+    <Property Name="fax" Type="varchar(max)" />
+    <Property Name="email" Type="varchar(max)" />
+    <Property Name="idRevenda" Type="int" />
+  </EntityType>
+  <Association Name="FK__CadastroC__idEst__662B2B3B">
+    <End Role="CadastroEstado" Type="Self.CadastroEstado" Multiplicity="0..1" />
+    <End Role="CadastroCidade" Type="Self.CadastroCidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroEstado">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="CadastroCidade">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CadastroE__idCid__690797E6">
+    <End Role="CadastroCidade" Type="Self.CadastroCidade" Multiplicity="0..1" />
+    <End Role="CadastroEquipamentos" Type="Self.CadastroEquipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroCidade">
+        <PropertyRef Name="idCidade" />
+      </Principal>
+      <Dependent Role="CadastroEquipamentos">
+        <PropertyRef Name="idCidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CadastroE__idEst__69FBBC1F">
+    <End Role="CadastroEstado" Type="Self.CadastroEstado" Multiplicity="0..1" />
+    <End Role="CadastroEquipamentos" Type="Self.CadastroEquipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroEstado">
+        <PropertyRef Name="idEstado" />
+      </Principal>
+      <Dependent Role="CadastroEquipamentos">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CadastroE__idLoc__6AEFE058">
+    <End Role="CadastroUnidade" Type="Self.CadastroUnidade" Multiplicity="0..1" />
+    <End Role="CadastroEquipamentos" Type="Self.CadastroEquipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroUnidade">
+        <PropertyRef Name="idLocalidade" />
+      </Principal>
+      <Dependent Role="CadastroEquipamentos">
+        <PropertyRef Name="idLocalidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CadastroE__idSet__6CD828CA">
+    <End Role="CadastroSetor" Type="Self.CadastroSetor" Multiplicity="0..1" />
+    <End Role="CadastroEquipamentos" Type="Self.CadastroEquipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroSetor">
+        <PropertyRef Name="idSetor" />
+      </Principal>
+      <Dependent Role="CadastroEquipamentos">
+        <PropertyRef Name="idSetor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CadastroS__idLoc__719CDDE7">
+    <End Role="CadastroUnidade" Type="Self.CadastroUnidade" Multiplicity="0..1" />
+    <End Role="CadastroSetor" Type="Self.CadastroSetor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroUnidade">
+        <PropertyRef Name="idLocalidade" />
+      </Principal>
+      <Dependent Role="CadastroSetor">
+        <PropertyRef Name="idLocalidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CadastroU__idCid__73852659">
+    <End Role="CadastroCidade" Type="Self.CadastroCidade" Multiplicity="0..1" />
+    <End Role="CadastroUnidade" Type="Self.CadastroUnidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CadastroCidade">
+        <PropertyRef Name="idCidade" />
+      </Principal>
+      <Dependent Role="CadastroUnidade">
+        <PropertyRef Name="idCidade" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EquipamentosModelStoreContainer">
+    <EntitySet Name="CadastroCidade" EntityType="Self.CadastroCidade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadastroEquipamentos" EntityType="Self.CadastroEquipamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadastroEstado" EntityType="Self.CadastroEstado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadastroSetor" EntityType="Self.CadastroSetor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CadastroUnidade" EntityType="Self.CadastroUnidade" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CadastroC__idEst__662B2B3B" Association="Self.FK__CadastroC__idEst__662B2B3B">
+      <End Role="CadastroEstado" EntitySet="CadastroEstado" />
+      <End Role="CadastroCidade" EntitySet="CadastroCidade" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CadastroE__idCid__690797E6" Association="Self.FK__CadastroE__idCid__690797E6">
+      <End Role="CadastroCidade" EntitySet="CadastroCidade" />
+      <End Role="CadastroEquipamentos" EntitySet="CadastroEquipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CadastroE__idEst__69FBBC1F" Association="Self.FK__CadastroE__idEst__69FBBC1F">
+      <End Role="CadastroEstado" EntitySet="CadastroEstado" />
+      <End Role="CadastroEquipamentos" EntitySet="CadastroEquipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CadastroE__idLoc__6AEFE058" Association="Self.FK__CadastroE__idLoc__6AEFE058">
+      <End Role="CadastroUnidade" EntitySet="CadastroUnidade" />
+      <End Role="CadastroEquipamentos" EntitySet="CadastroEquipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CadastroE__idSet__6CD828CA" Association="Self.FK__CadastroE__idSet__6CD828CA">
+      <End Role="CadastroSetor" EntitySet="CadastroSetor" />
+      <End Role="CadastroEquipamentos" EntitySet="CadastroEquipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CadastroS__idLoc__719CDDE7" Association="Self.FK__CadastroS__idLoc__719CDDE7">
+      <End Role="CadastroUnidade" EntitySet="CadastroUnidade" />
+      <End Role="CadastroSetor" EntitySet="CadastroSetor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CadastroU__idCid__73852659" Association="Self.FK__CadastroU__idCid__73852659">
+      <End Role="CadastroCidade" EntitySet="CadastroCidade" />
+      <End Role="CadastroUnidade" EntitySet="CadastroUnidade" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

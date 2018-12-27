@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EquipamentosModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="CadastroCidade">
+      <EntityTypeMapping TypeName="EquipamentosModel.CadastroCidade">
+        <MappingFragment StoreEntitySet="CadastroCidade">
+          <ScalarProperty Name="idCidade" ColumnName="idCidade" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadastroEquipamentos">
+      <EntityTypeMapping TypeName="EquipamentosModel.CadastroEquipamentos">
+        <MappingFragment StoreEntitySet="CadastroEquipamentos">
+          <ScalarProperty Name="idEquipamento" ColumnName="idEquipamento" />
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="idCidade" ColumnName="idCidade" />
+          <ScalarProperty Name="idLocalidade" ColumnName="idLocalidade" />
+          <ScalarProperty Name="idSetor" ColumnName="idSetor" />
+          <ScalarProperty Name="idModeloEquipamento" ColumnName="idModeloEquipamento" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="fabricante" ColumnName="fabricante" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="dtAtivacao" ColumnName="dtAtivacao" />
+          <ScalarProperty Name="dtDesativacao" ColumnName="dtDesativacao" />
+          <ScalarProperty Name="leituraDireta" ColumnName="leituraDireta" />
+          <ScalarProperty Name="dtModificacao" ColumnName="dtModificacao" />
+          <ScalarProperty Name="cor" ColumnName="cor" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadastroEstado">
+      <EntityTypeMapping TypeName="EquipamentosModel.CadastroEstado">
+        <MappingFragment StoreEntitySet="CadastroEstado">
+          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadastroSetor">
+      <EntityTypeMapping TypeName="EquipamentosModel.CadastroSetor">
+        <MappingFragment StoreEntitySet="CadastroSetor">
+          <ScalarProperty Name="idSetor" ColumnName="idSetor" />
+          <ScalarProperty Name="idLocalidade" ColumnName="idLocalidade" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="centroCusto" ColumnName="centroCusto" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cotaMensal" ColumnName="cotaMensal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CadastroUnidade">
+      <EntityTypeMapping TypeName="EquipamentosModel.CadastroUnidade">
+        <MappingFragment StoreEntitySet="CadastroUnidade">
+          <ScalarProperty Name="idLocalidade" ColumnName="idLocalidade" />
+          <ScalarProperty Name="idCidade" ColumnName="idCidade" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="contato" ColumnName="contato" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="razaoSocial" ColumnName="razaoSocial" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="ie" ColumnName="ie" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="idRevenda" ColumnName="idRevenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
