@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
     <link rel="icon" href="../assets/img/favicon.png">
     <title>
-        Material Dashboard by Creative Tim
+        @ViewBag.Title
     </title>
     <!--     Fonts and icons     -->
     <link runat="server" rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -20,7 +20,7 @@
     @*<link runat="server" href="~/assets/assets-for-demo/demo.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="~/assets/css/Login.css" />
     <!-- iframe removal -->
-    
+
 </head>
 
 <body class="">
@@ -32,42 +32,42 @@
                 Tip 2: you can also add an image using data-image tag
             -->
             <div class="logo">
-                <a runat="server" href="~/Home/Index" class="simple-text logo-normal">
-                    dnaPrint
-                </a>
+                @*<a runat="server" href="~/Home/Index" class="simple-text logo-normal">
+                        dnaPrint
+                    </a>*@
+                <img runat="server" src="~/assets/img/dnaPrintlogo.jpeg" class="img-fluid" />
             </div>
-            <div class="sidebar-wrapper">
+            <div id="navMenu" class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item active ">
+                    <li id="navDashboard" class="nav-item">
                         <a runat="server" class="nav-link" href="~/Home/Index">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li id="navEquipamentos" class="nav-item ">
                         <a runat="server" class="nav-link" href="~/CadastroEquipamentos/Index">
                             <i class="material-icons">print</i>
                             <p>Equipamentos</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li id="navSetores" class="nav-item ">
                         <a runat="server" class="nav-link" href="~/CadastroSetors/Index">
                             <i class="material-icons">business</i>
                             <p>Setores</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                            @*<i class="material-icons">exit_to_app</i>*@
-                            @{
-                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                        <a href="javascript:document.getElementById('logoutForm').submit()"  class="nav-link"><i class="material-icons">exit_to_app</i>
-                                                                                                                              <p>Sair</p>
-                            </a>
-                                        //}
-                                    } }
-                        @*</a>*@
+                        @{
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
+                                    <i class="material-icons">exit_to_app</i>
+                                    <p>Sair</p>
+                                </a>
+                            }
+                        }
                     </li>
                 </ul>
             </div>
@@ -135,7 +135,7 @@
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
-                    @{ 
+                    @{
                         if (!User.Identity.IsAuthenticated && ViewBag.Title != "Efetuar login")
                         {
                             Response.Redirect(@"~/Account/Login");
@@ -196,6 +196,31 @@
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
 <script runat="server" src="~/assets/js/material-dashboard.js?v=2.0.0"></script>
 <!-- demo init -->
-@*<script src="../assets/js/plugins/demo.js"></script>*@
+@*<script runat="server" src="~/assets/js/plugins/demo.js"></script>*@
+
+
+
+<script type="text/javascript">
+        switch (document.title) {
+            case "Setores":
+                $("#navDashboard").removeClass("active");
+                $("#navEquipamentos").removeClass("active");
+                $("#navSetores").addClass("active");
+                break;
+            case "Equipamentos":
+                $("#navDashboard").removeClass("active");
+                $("#navSetores").remove("active");
+                $("#navEquipamentos").addClass("active");
+                break;
+            case "Dashboard":
+                $("#navSetores").remove("active");
+                $("#navEquipamentos").removeClass("active");
+                $("#navDashboard").addClass("active");
+                break;
+            default:
+                break;
+    };
+</script>
+
 
 </html>
