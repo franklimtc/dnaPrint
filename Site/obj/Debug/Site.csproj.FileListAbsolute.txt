@@ -232,10 +232,3 @@ C:\Users\Franklim\Documents\Visual Studio 2017\Projects\dnaPrint_3\Site\obj\Debu
 C:\Users\Franklim\Documents\Visual Studio 2017\Projects\dnaPrint_3\Site\obj\Debug\Site.pdb
 C:\Users\Franklim\Documents\Visual Studio 2017\Projects\dnaPrint_3\Site\obj\Debug\Site.Migrations.Auth.resources
 C:\Users\Franklim\Documents\Visual Studio 2017\Projects\dnaPrint_3\Site\obj\Debug\Site.csproj.GenerateResource.cache
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Franklim\source\repos\dnaPrint\Site\bin\roslyn\VBCSCompiler.exe

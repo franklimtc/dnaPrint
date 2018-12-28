@@ -27,10 +27,6 @@ namespace Site.Models
         public string ip { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string fabricante { get; set; }
-
-        [Required]
         [StringLength(15)]
         public string serie { get; set; }
 

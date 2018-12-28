@@ -51,10 +51,6 @@ namespace Site.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<CadastroEquipamentos>()
-                .Property(e => e.fabricante)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<CadastroEquipamentos>()
                 .Property(e => e.serie)
                 .IsUnicode(false);
 
