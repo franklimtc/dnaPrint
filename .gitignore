@@ -4,3 +4,9 @@
 
 /.vs/dnaPrint_3/v15/Server/sqlite3
 /Site/bin/roslyn
+/Site/bin
+/Site/assets/js
+/Site/obj/Debug/Site.csproj.CoreCompileInputs.cache
+/.vs/dnaPrint_3/DesignTimeBuild/.dtbcache
+/.vs/config/applicationhost2.config
+/.vs/config/applicationhost3.config
