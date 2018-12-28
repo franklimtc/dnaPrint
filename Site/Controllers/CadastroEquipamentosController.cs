@@ -98,7 +98,7 @@ namespace Site.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idEquipamento, ip,nome,status")] CadastroEquipamentos EqpAtual)
+        public ActionResult Edit([Bind(Include = "idEquipamento, ip,nome,status,serie")] CadastroEquipamentos EqpAtual)
         {
             var EqpUpdate = db.CadastroEquipamentos.Find(EqpAtual.idEquipamento);
             EqpUpdate.dtModificacao = DateTime.Now;
