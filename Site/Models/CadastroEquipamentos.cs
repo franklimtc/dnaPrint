@@ -22,15 +22,15 @@ namespace Site.Models
 
         public int? idModeloEquipamento { get; set; }
 
+        [Required]
         [StringLength(15)]
         public string ip { get; set; }
 
-        [StringLength(50)]
-        public string fabricante { get; set; }
-
+        [Required]
         [StringLength(15)]
         public string serie { get; set; }
 
+        [Required]
         [StringLength(30)]
         public string nome { get; set; }
 

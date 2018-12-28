@@ -248,6 +248,7 @@
     <Content Include="assets\css\material-dashboard.min.css" />
     <Content Include="assets\img\apple-icon.png" />
     <Content Include="assets\img\cover.jpg" />
+    <Content Include="assets\img\dnaPrintlogo.jpeg" />
     <Content Include="assets\img\faces\avatar.jpg" />
     <Content Include="assets\img\faces\card-profile1-square.jpg" />
     <Content Include="assets\img\faces\card-profile2-square.jpg" />
