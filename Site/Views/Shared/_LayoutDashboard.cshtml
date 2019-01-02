@@ -221,6 +221,12 @@
                 break;
     };
 </script>
+@if (ViewBag.notificacao == "Error")
+{
+    <script type="text/javascript">
+        md.showNotification('top', 'center', 2, "Uma nova <b style='Font-Size:large'>Falha</b> foi encontrada!");
+    </script>
+}
 
 
 </html>

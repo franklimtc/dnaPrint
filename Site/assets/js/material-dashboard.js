@@ -164,14 +164,14 @@ md = {
     }
   },
 
-  showNotification: function(from, align) {
+  showNotification: function(from, align, color, mensagem) {
     type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
 
-    color = Math.floor((Math.random() * 6) + 1);
+    //color = Math.floor((Math.random() * 6) + 1);
 
     $.notify({
-      icon: "add_alert",
-      message: "Welcome to <b>Material Dashboard Pro</b> - a beautiful admin panel for every web developer."
+        icon: "add_alert",
+        message: mensagem
 
     }, {
       type: type[color],

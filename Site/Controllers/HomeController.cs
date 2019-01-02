@@ -14,6 +14,7 @@ namespace Site.Controllers
     public class HomeController : Controller
     {
         private ModeldnaPrint db = new ModeldnaPrint();
+        private static int nFalhas = 0;
 
         public ActionResult Index()
         {
@@ -23,7 +24,13 @@ namespace Site.Controllers
             ViewBag.Volume = $"{db.vw_bilhetagemAtual.First().VolumeTotal}";
             try
             {
-                ViewBag.Falhas = $"{db.vw_ErrosEquipamentos.Sum(x => x.Erros).Value}";
+                int quantFalha = db.vw_ErrosEquipamentos.Sum(x => x.Erros).Value;
+                ViewBag.Falhas = $"{quantFalha}";
+                if (nFalhas < quantFalha && nFalhas != 0)
+                {
+                    ViewBag.notificacao = "Error";
+                }
+                nFalhas = quantFalha;
             }
             catch 
             {
