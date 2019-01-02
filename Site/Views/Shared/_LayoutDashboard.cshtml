@@ -199,6 +199,35 @@
 @*<script runat="server" src="~/assets/js/plugins/demo.js"></script>*@
 
 
+<script>
+    $("#Disponibilidade").click(function () {
+        TabelaDinamica("Disponibilidade");
+    });
+    $("#Falhas").click(function () {
+        TabelaDinamica("Falhas");
+    });
+    $("#TonerBaixo").click(function () {
+        TabelaDinamica("TonerBaixo");
+    });
+
+    function TabelaDinamica(nome) {
+        $(".card[id^='Tab']").slideUp();
+        $("#Tab" + nome).slideDown('slow');
+    }
+</script>
+<style>
+    .card-stats:hover {
+        transition: 0.4s;
+        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    }
+
+    .card-stats:hover .card-icon {
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+    transition: 0.4s;
+    }
+</style>
 
 <script type="text/javascript">
     switch (document.title) {
