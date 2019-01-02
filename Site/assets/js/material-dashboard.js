@@ -164,13 +164,13 @@ md = {
     }
   },
 
-  showNotification: function(from, align, color, mensagem) {
+  showNotification: function(from, align, color, mensagem,icone) {
     type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
 
     //color = Math.floor((Math.random() * 6) + 1);
 
     $.notify({
-        icon: "add_alert",
+        icon: icone,
         message: mensagem
 
     }, {

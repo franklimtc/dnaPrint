@@ -15,22 +15,47 @@ namespace Site.Controllers
     {
         private ModeldnaPrint db = new ModeldnaPrint();
         private static int nFalhas = 0;
+        private static int nSupriBaixo = 0;
+        private static int nDisponibilidade = 0;
 
         public ActionResult Index()
         {
             ViewBag.Title = "Dashboard";
-            ViewBag.Disponibilidade = $"{db.vw_disponibilidade3.Where(x => x.qtdDias == 0).Count()}/{db.vw_disponibilidade3.Count()}";
-            ViewBag.Suprimentos = $"{db.vw_suprimentos2.Where( x=> x.Toner < 20).Count()}";
+            int quantDisponibilidade = db.vw_disponibilidade3.Where(x => x.qtdDias == 0).Count();
+            ViewBag.Disponibilidade = $"{quantDisponibilidade}/{db.vw_disponibilidade3.Count()}";
+            #region Alerta de Disponibilidade 
+            if (nDisponibilidade < quantDisponibilidade && nDisponibilidade ==0 || nDisponibilidade < quantDisponibilidade && nDisponibilidade > 0)
+            {
+                ViewBag.alertaDisponibilidade = "DisponibilidadeOnline";
+            }else
+            if (nDisponibilidade > quantDisponibilidade && nDisponibilidade == 0 || nDisponibilidade > quantDisponibilidade && nDisponibilidade > 0)
+            {
+                ViewBag.alertaDisponibilidade = "DisponibilidadeOffline";
+            }
+            nDisponibilidade = quantDisponibilidade;
+            #endregion
+
+            int quantSupri = db.vw_suprimentos2.Where(x => x.Toner < 20).Count();
+            ViewBag.Suprimentos = $"{quantSupri}";
+            #region Alerta de Toner Baixo
+                if (nSupriBaixo < quantSupri && nSupriBaixo == 0 || nSupriBaixo < quantSupri && nSupriBaixo > 0)
+                {
+                    ViewBag.alertaSuprimento = "Suprimento";
+                }
+                nSupriBaixo = quantSupri;
+            #endregion
             ViewBag.Volume = $"{db.vw_bilhetagemAtual.First().VolumeTotal}";
             try
             {
                 int quantFalha = db.vw_ErrosEquipamentos.Sum(x => x.Erros).Value;
                 ViewBag.Falhas = $"{quantFalha}";
-                if (nFalhas < quantFalha && nFalhas != 0)
+                #region Alerta de Falha
+                if (nFalhas < quantFalha && nFalhas == 0 || nFalhas < quantFalha && nFalhas > 0)
                 {
-                    ViewBag.notificacao = "Error";
+                    ViewBag.alertaFalha = "Falha";
                 }
                 nFalhas = quantFalha;
+                #endregion
             }
             catch 
             {

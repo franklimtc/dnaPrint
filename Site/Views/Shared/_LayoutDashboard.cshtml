@@ -201,30 +201,48 @@
 
 
 <script type="text/javascript">
-        switch (document.title) {
-            case "Setores":
-                $("#navDashboard").removeClass("active");
-                $("#navEquipamentos").removeClass("active");
-                $("#navSetores").addClass("active");
-                break;
-            case "Equipamentos":
-                $("#navDashboard").removeClass("active");
-                $("#navSetores").remove("active");
-                $("#navEquipamentos").addClass("active");
-                break;
-            case "Dashboard":
-                $("#navSetores").remove("active");
-                $("#navEquipamentos").removeClass("active");
-                $("#navDashboard").addClass("active");
-                break;
-            default:
-                break;
+    switch (document.title) {
+        case "Setores":
+            $("#navDashboard").removeClass("active");
+            $("#navEquipamentos").removeClass("active");
+            $("#navSetores").addClass("active");
+            break;
+        case "Equipamentos":
+            $("#navDashboard").removeClass("active");
+            $("#navSetores").remove("active");
+            $("#navEquipamentos").addClass("active");
+            break;
+        case "Dashboard":
+            $("#navSetores").remove("active");
+            $("#navEquipamentos").removeClass("active");
+            $("#navDashboard").addClass("active");
+            break;
+        default:
+            break;
     };
 </script>
-@if (ViewBag.notificacao == "Error")
+@if (ViewBag.alertaFalha == "Falha")
 {
     <script type="text/javascript">
-        md.showNotification('top', 'center', 2, "Uma nova <b style='Font-Size:large'>Falha</b> foi encontrada!");
+        md.showNotification('top', 'center', 2, "Uma nova <b style='Font-Size:large'>Falha</b> foi encontrada!", "warning");
+    </script>
+}
+@if (ViewBag.alertaSuprimento == "Suprimento")
+{
+    <script type="text/javascript">
+        md.showNotification('top', 'center', 1, "Um novo <b style='Font-Size:large'>Suprimento</b> chegou a 20%", "invert_colors");
+    </script>
+}
+@if (ViewBag.alertaDisponibilidade == "DisponibilidadeOnline")
+{
+    <script type="text/javascript">
+        md.showNotification('top', 'center', 4, "Um novo <b style='Font-Size:large'>Equipamento</b> esta online!", "invert_colors");
+    </script>
+}
+@if (ViewBag.alertaDisponibilidade == "DisponibilidadeOffline")
+{
+    <script type="text/javascript">
+        md.showNotification('top', 'center', 4, "Um <b style='Font-Size:large'>Equipamento</b> esta offline!", "print");
     </script>
 }
 
