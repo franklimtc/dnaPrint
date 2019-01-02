@@ -65,7 +65,9 @@ namespace Site.Controllers
 
             var tempBilhetagemSemanal = db.tempBilhetagemSemanal;
             //var tempBilhetagemSemanal = db.CadastroEquipamentos.Include(c => c.)
-
+            string usuuario = User.Identity.Name;
+            usuuario = usuuario.Split('@').First();
+            ViewBag.Usuario = usuuario;
             return View(tempBilhetagemSemanal.ToList());
         }
 
