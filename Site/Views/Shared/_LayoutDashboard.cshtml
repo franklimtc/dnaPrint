@@ -57,6 +57,12 @@
                             <p>Setores</p>
                         </a>
                     </li>
+                    <li id="navRelatorios" class="nav-item ">
+                        <a runat="server" class="nav-link" href="~/Home/About">
+                            <i class="material-icons">description</i>
+                            <p>Relatorios</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         @{
                             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -235,18 +241,29 @@
         case "Setores":
             $("#navDashboard").removeClass("active");
             $("#navEquipamentos").removeClass("active");
+            $("#navRelatorios").removeClass("active");
             $("#navSetores").addClass("active");
+            
             break;
         case "Equipamentos":
             $("#navDashboard").removeClass("active");
             $("#navSetores").remove("active");
+            $("#navRelatorios").removeClass("active");
             $("#navEquipamentos").addClass("active");
+            
             break;
         case "Dashboard":
             $("#navSetores").remove("active");
             $("#navEquipamentos").removeClass("active");
+            $("#navRelatorios").removeClass("active");
             $("#navDashboard").addClass("active");
+            
             break;
+        case "Relatorios":
+            $("#navSetores").remove("active");
+            $("#navEquipamentos").removeClass("active");
+            $("#navDashboard").removeClass("active");
+            $("#navRelatorios").addClass("active");
         default:
             break;
     };
