@@ -24,6 +24,9 @@ namespace Site.Models
         public virtual DbSet<vw_ErrosEquipamentos> vw_ErrosEquipamentos { get; set; }
         public virtual DbSet<tempBilhetagemSemanal> tempBilhetagemSemanal { get; set; }
 
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<ArquivoImpresso> ArquivoImpresso { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -296,6 +299,87 @@ namespace Site.Models
                 .Property(e => e.ip)
                 .IsUnicode(false);
             #endregion
+
+            // Adicionando Usuarios
+
+            #region Usuarios
+            modelBuilder.Entity<Usuarios>()
+               .Property(e => e.nome)
+               .IsUnicode(false);
+
+            modelBuilder.Entity<Usuarios>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuarios>()
+                .Property(e => e.senha)
+                .IsUnicode(false);
+            #endregion
+
+            //Adicionando Arquivos Impressos
+
+            #region ArquivosImpressos
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.DataType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.Document)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.DriverName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.MachineName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.NotifyUserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.PaperKind)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.PaperSource)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.Parameters)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.PrinterName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.PrinterResolutionKind)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.PrintProcessorName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.StatusDescription)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.TimeWindow)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.UserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ArquivoImpresso>()
+                .Property(e => e.server)
+                .IsUnicode(false);
+            #endregion
+
         }
     }
 }

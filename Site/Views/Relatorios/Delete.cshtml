@@ -1,0 +1,193 @@
+﻿@model Site.Models.vw_bilhetagemAtual
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>vw_bilhetagemAtual</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.setor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.setor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Iniimpressoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Iniimpressoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inicopias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inicopias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inifax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inifax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Initotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Initotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Finimpressoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Finimpressoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fincopias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fincopias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Finfax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Finfax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fintotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fintotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.franquia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.franquia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Volume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumeTotal)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

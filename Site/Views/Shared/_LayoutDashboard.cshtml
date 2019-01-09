@@ -58,7 +58,7 @@
                         </a>
                     </li>
                     <li id="navRelatorios" class="nav-item ">
-                        <a runat="server" class="nav-link" href="~/Home/About">
+                        <a runat="server" class="nav-link" href="~/Relatorios/Index">
                             <i class="material-icons">description</i>
                             <p>Relatorios</p>
                         </a>
@@ -292,6 +292,28 @@
         md.showNotification('top', 'center', 4, "Um <b style='Font-Size:large'>Equipamento</b> esta offline!", "print");
     </script>
 }
+<script type="text/javascript">
+    $("#RelatorioFaturamento > .card-body").slideUp();
+   
+
+    $("#VisualizarFaturamento").click(function () {
+        $("#RelatorioFaturamento > .card-body").slideToggle("slow");
+        if ($("#VisualizarFaturamento").text == "Visualizar Relatorio") {
+            $("#VisualizarFaturamento").text = "Recolher Relatorio";
+        } else {
+            $("#VisualizarFaturamento").text = "Visualizar Relatorio";
+        }
+    });
+
+    $("#VisualizarArquivosImpressos").click(function () {
+        $("#RelatorioArquivosImpressos > .card-body").slideToggle("slow");
+        if ($("#VisualizarArquivosImpressos").text == "Visualizar Relatorio") {
+            $("#VisualizarArquivosImpressos").text = "Recolher Relatorio";
+        } else {
+            $("#VisualizarArquivosImpressos").text = "Visualizar Relatorio";
+        }
+    });
+</script>
 
 
 </html>

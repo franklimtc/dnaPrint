@@ -202,6 +202,7 @@
     <Compile Include="Controllers\CadastroSetorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RelatoriosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ArquivoImpresso.cs" />
     <Compile Include="Models\CadastroCidade.cs" />
     <Compile Include="Models\CadastroEquipamentoModelo.cs" />
     <Compile Include="Models\CadastroEquipamentos.cs" />
@@ -221,6 +223,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModeldnaPrint.cs" />
     <Compile Include="Models\tempBilhetagemSemanal.cs" />
+    <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Models\vw_bilhetagemAtual.cs" />
     <Compile Include="Models\vw_disponibilidade3.cs" />
     <Compile Include="Models\vw_ErrosEquipamentos.cs" />
@@ -1028,6 +1031,11 @@
     <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Relatorios\Create.cshtml" />
+    <Content Include="Views\Relatorios\Delete.cshtml" />
+    <Content Include="Views\Relatorios\Details.cshtml" />
+    <Content Include="Views\Relatorios\Edit.cshtml" />
+    <Content Include="Views\Relatorios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
