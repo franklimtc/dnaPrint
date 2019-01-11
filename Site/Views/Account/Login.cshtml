@@ -3,7 +3,42 @@
 @{
     ViewBag.Title = "Efetuar login";
 }
-<div class="wrapper">
+<div class="DivDoLogin">
+    <style runat="server" rel="stylesheet" type="text/css" scoped="scoped">
+        @@import url(../../assets/css/Start.css);
+    </style>
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="~/assets/img/dnaprint.png" />
+
+            <p id="profile-name" class="profile-name-card"></p>
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <span id="reauth-email" class="reauth-email"></span>
+
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @required = "required", @id = "inputEmail", @placeholder = "Email address", @autofocus = "true" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @required = "required", @id = "inputPassword", @placeholder = "Password" })
+
+                <div id="remember" class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                        <!-- <input type="checkbox" value="remember-me"> Lembrar-me* -->
+                    </label>
+                </div>
+                <button id="btnLogin" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
+                    Acessar
+                </button>
+
+            }
+            @*@Html.ActionLink("Esqueceu sua senha?", "ForgotPassword", null, new { @class = "forgot-password" })*@      
+        </div><!-- /card-container -->
+    </div>    
+</div>
+
+
+<div class="wrapper" style="display:none">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -101,7 +136,7 @@
 </div>
 
     
-    <style>
+    @*<style>
         .FormLogin h4 + h2 {
             text-align: center;
         }
@@ -171,17 +206,17 @@
         }
         
      
-    </style>
-    <script>
+    </style>*@
+    @*<script>
         $("#btn").click(function () {
             $(".card").css('-webkit-transform', 'scale(0.2)');
             $(".card").css('-ms-transform', 'scale(0.2)');
             $(".card").css('transform', 'scale(0.2)');
         });
-    </script>
+    </script>*@
 
 
-    @section Scripts {
+    @*@section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
 
-    }
+    }*@

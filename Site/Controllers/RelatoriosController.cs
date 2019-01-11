@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -25,12 +27,64 @@ namespace Site.Controllers
             }
             ViewBag.dbArquivosImpressos =  arqImpre;
 
-           
+            //string sqlString = "select c.UF,b.cidade,d.descricao 'local', e.descricao 'setor', a.serie,a.nome 'fila',a.ip" +
+            //    " , (f.total_pf_color + f.total_pf_mono + f.total_gf_color + f.total_gf_mono + total_pf_mono_simples + total_pf_mono_duplex) 'Contador'  " +
+            //    " , CASE                                                                                                                                 " +
+            //    "  WHEN f.black is not null THEN f.black                                                                                                 " +
+            //    "  WHEN f.toner_total_pr = 0 and f.black is null THEN 0                                                                                  " +
+            //    "  ELSE (cast(f.toner_atual_pr as float) / cast(f.toner_total_pr as float) ) * 100                                                       " +
+            //    " END AS 'qtdTonerPr'                                                                                                                    " +
+            //    " , CASE                                                                                                                                 " +
+            //    "  WHEN f.cyan is not null THEN f.cyan                                                                                                   " +
+            //    "  WHEN f.toner_total_ci = 0 and f.cyan is null THEN 0                                                                                   " +
+            //    "  ELSE (cast(f.toner_atual_ci as float) / cast(f.toner_total_ci as float) ) * 100                                                       " +
+            //    " END AS 'qtdTonerCi'                                                                                                                    " +
+            //    " , CASE                                                                                                                                 " +
+            //    "  WHEN f.yellow is not null THEN f.yellow                                                                                               " +
+            //    "  WHEN f.toner_total_am = 0 and f.yellow is null THEN 0                                                                                 " +
+            //    "  ELSE (cast(f.toner_atual_am as float) / cast(f.toner_total_am as float) ) * 100                                                       " +
+            //    " END AS 'qtdTonerAm'                                                                                                                    " +
+            //    " , CASE                                                                                                                                 " +
+            //    "  WHEN f.magenta is not null THEN f.magenta                                                                                             " +
+            //    "  WHEN f.toner_total_ma = 0 and f.magenta is null THEN 0                                                                                " +
+            //    "  ELSE (cast(f.toner_atual_ma as float) / cast(f.toner_total_ma as float) ) * 100                                                       " +
+            //    " END AS 'qtdTonerMa'                                                                                                                    " +
+            //    " , CASE                                                                                                                                 " +
+            //    "  WHEN f.cilindro_total = 0 THEN 0                                                                                                      " +
+            //    "  ELSE (cast(f.cilindro_atual as float) / cast(f.cilindro_total as float) ) * 100                                                       " +
+            //    " END AS 'qtdCilindro'                                                                                                                   " +
+            //    " ,f.data                                                                                                                                " +
+            //    " from CadastroEquipamentos as a                                                                                                         " +
+            //    " left join CadastroCidade as b on a.idCidade=b.idCidade                                                                                 " +
+            //    " left join CadastroEstado as c on a.idEstado=c.idEstado                                                                                 " +
+            //    " left join CadastroUnidade as d on a.idLocalidade=d.idLocalidade                                                                        " +
+            //    " left join  CadastroSetor as e on a.idSetor=e.idSetor                                                                                   " +
+            //    " left join                                                                                                                              " +
+            //    " (                                                                                                                                      " +
+            //    "  select * from DadosDisparos where idDisparo in                                                                                        " +
+            //    "  (select max(idDisparo) from DadosDisparos  group by idEquipamento)                                                                    " +
+            //    " ) as f on a.serie=f.serie                                                                                                              " +
+            //    ")                                                                                                                                       " ;
+            
 
-            
-            
-            
-            
+            //using (var con = new EntityConnection("name=ModeldnaPrint"))
+            //{
+            //    con.Open();
+            //    EntityCommand cmd = con.CreateCommand();
+            //    cmd.CommandText = sqlString;
+            //    Dictionary<int, string> dict = new Dictionary<int, string>();
+            //    using (EntityDataReader rdr = cmd.ExecuteReader(CommandBehavior.SequentialAccess | CommandBehavior.CloseConnection))
+            //    {
+            //        while (rdr.Read())
+            //        {
+            //            int a = rdr.GetInt32(0);
+            //            var b = rdr.GetString(1);
+            //            dict.Add(a, b);
+            //        }
+            //    }
+            //}
+
+
             return View();
         }
        
