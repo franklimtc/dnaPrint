@@ -104,7 +104,7 @@
                 <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table  class="table table-hover">
                     <thead class="text-warning">
                     <th>ID</th>
                     <th>Fila</th>
@@ -126,6 +126,18 @@
                         }
                     </tbody>
                 </table>
+               <div class="row">
+                <div class="col-md-12" style="text-align:center">
+                    <nav aria-label="Navegação de página exemplo">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
+                            <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
+                            <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
+                            <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -137,7 +149,7 @@
                 <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table id="TabelaDisponibilidade"class="table table-hover">
                     <thead class="text-warning">
                     <th>ID</th>
                     <th>Ambiente</th>
@@ -146,23 +158,35 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var eqp in db.vw_disponibilidade3.ToList())
+                            foreach (var eqp in db.vw_disponibilidade3.ToList().OrderByDescending(x=>x.qtdDias))
                             {
                                 <tr>
                                     <td>@eqp.idEquipamento</td>
                                     <td>@eqp.Ambiente</td>
                                     <td>@eqp.ip</td>
                                     <td>
-                                        @if (eqp.qtdDias == 0)
+                                        @if (eqp.qtdDias > 0)
                                         {<label class="text-danger">Offline</label> }
                                         else
                                         {<label class="text-success">Online</label>}
-                                </td>
-                            </tr>
-                        }
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col-md-12" style="text-align:center">
+                        <nav aria-label="Navegação de página exemplo">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaDisponibilidade')">1</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaDisponibilidade')">2</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaDisponibilidade')">3</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaDisponibilidade')">4</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -174,7 +198,7 @@
                 <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table id="TabelaTonerBaixo" class="table table-hover">
                     <thead class="text-warning">
                     <th>ID</th>
                     <th>Ambiente</th>
@@ -183,7 +207,7 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var eqp in db.vw_suprimentos2.ToList())
+                            foreach (var eqp in db.vw_suprimentos2.ToList().OrderBy(x=>x.Toner))
                             {
                                 <tr>
                                     <td>@eqp.idEquipamento</td>
@@ -192,14 +216,28 @@
                                     <td>
                                         @if (eqp.Toner < 20)
                                         {<label class="text-danger">@eqp.Toner</label> }
-                                        else if (eqp.Toner > 20)
-                                        {<label class="text-success">@eqp.Toner</label>}
-                                        else {<label>Sem Leitura</label> }</td>
-                            </tr>
-                        }
+                                    else if (eqp.Toner > 20)
+                                    {<label class="text-success">@eqp.Toner</label>}
+                                else
+                                {<label>Sem Leitura</label>}
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col-md-12" style="text-align:center">
+                        <nav aria-label="Navegação de página exemplo">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

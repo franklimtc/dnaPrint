@@ -314,6 +314,189 @@
         }
     });
 </script>
+<script>
+    //Paginar1('TabelaTonerBaixo');
+    //Paginar1("TabelaDisponibilidade");
 
+    var tabela = document.getElementById("TabelaTonerBaixo");
+    var linhas = tabela.rows;
+
+    for (var i = 1; i < linhas.length; i++) {
+        if (i > 0 && i < 10) {
+            linhas[i].style.display = "table-row";
+        } else {
+            linhas[i].style.display = "none";
+        }
+    }
+    var tabela = document.getElementById("TabelaDisponibilidade");
+    var linhas = tabela.rows;
+
+    for (var i = 1; i < linhas.length; i++) {
+        if (i > 0 && i < 10) {
+            linhas[i].style.display = "table-row";
+        } else {
+            linhas[i].style.display = "none";
+        }
+    }
+
+    @*function PaginarGenericoProx(nome)
+    {
+        @ViewBag.Inicio = @ViewBag.QuantPag + @ViewBag.Inicio ;
+
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+
+        linhas.style.display = "none";
+
+        for (var i = @ViewBag.Inicio - 10; i < @ViewBag.Inicio; i++) {
+            linhas[i].style.display = "table-row";
+        }
+
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+    }
+
+
+    function PaginarGenericoAnte(nome)
+    {
+        @ViewBag.Inicio =  @ViewBag.Inicio - 10;
+
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+
+        linhas.style.display = "none";
+
+        for (var i = @ViewBag.Inicio - 20; i < @ViewBag.Inicio; i++) {
+            linhas[i].style.display = "table-row";
+        }
+
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+    }*@
+
+
+
+    function Paginar1(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 10) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+    }
+
+    function Paginar2(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+
+        for (var i = 1; i < linhas.length; i++) {
+            if (i >= 10 && i < 20 ) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+
+    }
+
+    function Paginar3(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i >= 20 && i < 30 ) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+
+    }
+
+    function Paginar4(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i >= 30 && i < 40 ) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+
+    }
+    function Paginar5(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i >= 40 && i < 50) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+
+    }
+    function Paginar6(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i >= 50 && i < 60) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+
+    }
+    function Paginar6(nome) {
+        var tabela = document.getElementById(nome);
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i >= 60 && i < 70) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+        $('.pagination li').each(function (i) {
+            i.removeClass("disable");
+        });
+        $(this).addClass('disable');
+
+    }
+
+</script>
 
 </html>
