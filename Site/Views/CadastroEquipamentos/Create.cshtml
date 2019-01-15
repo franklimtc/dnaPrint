@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Novo equipamento";
+    ViewBag.Title = "Equipamentos";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
@@ -57,21 +57,21 @@
                 <div class="col-md-3">
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">IP</label><br />
-                        @Html.EditorFor(model => model.ip, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.ip, new { htmlAttributes = new { @class = "btn btn-secondary", @style = "width:100%" } })
                         @Html.ValidationMessageFor(model => model.ip, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">Série</label><br />
-                        @Html.EditorFor(model => model.serie, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.serie, new { htmlAttributes = new { @class = "btn btn-secondary", @style = "width:100%" } })
                         @Html.ValidationMessageFor(model => model.serie, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">Fila</label><br />
-                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "btn btn-secondary", @style = "width:100%" } })
                         @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="col-md-3">
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">Fila</label><br />
-                        @Html.EditorFor(model => model.dtAtivacao, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
+                        @Html.EditorFor(model => model.dtAtivacao, new { htmlAttributes = new { @class = "btn btn-secondary", @type = "Date", @style = "width:100%" } })
                         @Html.ValidationMessageFor(model => model.dtAtivacao, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Adicionar" class="btn btn-primary" />
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @*@section Scripts {

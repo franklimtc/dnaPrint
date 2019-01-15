@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="col-md-8">
-        <div class="card" id="TabFalhas">
+        <div class="card" style="display:none" id="TabFalhas">
             <div class="card-header card-header-danger">
                 <h4 class="card-title">Equipamentos com falha</h4>
                 <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
@@ -143,13 +143,13 @@
 
         <!-- ///////////////////////////////////////////////////////// -->
 
-        <div id="TabDisponibilidade" style="display:none" class="card">
+        <div id="TabDisponibilidade" class="card">
             <div class="card-header card-header-warning">
                 <h4 class="card-title">Equipamentos Disponiveis</h4>
                 <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
             </div>
             <div class="card-body table-responsive">
-                <table id="TabelaDisponibilidade"class="table table-hover">
+                <table id="TabelaDisponibilidade" class="table table-hover">
                     <thead class="text-warning">
                     <th>ID</th>
                     <th>Ambiente</th>
@@ -158,7 +158,7 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var eqp in db.vw_disponibilidade3.ToList().OrderByDescending(x=>x.qtdDias))
+                            foreach (var eqp in db.vw_disponibilidade3.ToList().OrderByDescending(x => x.qtdDias))
                             {
                                 <tr>
                                     <td>@eqp.idEquipamento</td>
@@ -174,6 +174,7 @@
                             }
                         }
                     </tbody>
+                    
                 </table>
                 <div class="row">
                     <div class="col-md-12" style="text-align:center">
@@ -183,6 +184,7 @@
                                 <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaDisponibilidade')">2</a></li>
                                 <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaDisponibilidade')">3</a></li>
                                 <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaDisponibilidade')">4</a></li>
+                                @*<li class="page-item"><a class="page-link" onclick="ProximaPagina()">=></a></li>*@
                             </ul>
                         </nav>
                     </div>
@@ -234,6 +236,7 @@
                                 <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
                                 <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
                                 <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
+                                @*<li class="page-item"><a class="page-link" onclick="ProximaPagina()">=></a></li>*@
                             </ul>
                         </nav>
                     </div>

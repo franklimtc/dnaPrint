@@ -15,7 +15,8 @@
         <div>
             <hr />
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
                     <label>UF</label><br />
                     @Html.DisplayFor(model => model.CadastroEstado.UF)
                 </div>
@@ -31,8 +32,11 @@
                     <label>Setor</label><br />
                     @Html.DisplayFor(model => model.CadastroSetor.descricao)
                 </div>
+                <div class="col-md-1"></div>
             </div>
             <div class="row">
+                <div class="col-md-1"></div>
+
                 <div class="col-md-2">
                     <label>Fabricante</label><br />
                     @Html.DisplayFor(model => model.CadastroEquipamentoModelo.Fabricante)
@@ -43,15 +47,17 @@
                     @Html.DisplayFor(model => model.CadastroEquipamentoModelo.Modelo)
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label>Série</label><br />
                     @Html.DisplayFor(model => model.serie)
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label>Fila</label><br />
                     @Html.DisplayFor(model => model.nome)
                 </div>
+
+                <div class="col-md-1"></div>
             </div>
 
             @using (Html.BeginForm())
@@ -59,10 +65,12 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Voltar", "Index")
+                    <input type="submit" value="Deletar" class="btn btn-primary" />
+
                 </div>
             }
         </div>
     </div>
+
 </div>
+@Html.ActionLink("Voltar", "Index")

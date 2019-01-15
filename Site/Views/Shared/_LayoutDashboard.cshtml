@@ -92,7 +92,7 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <form class="navbar-form">
+                        @*<form class="navbar-form">
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -100,16 +100,16 @@
                                     <div class="ripple-container"></div>
                                 </button>
                             </div>
-                        </form>
+                        </form>*@
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link" href="#pablo">
                                     <i class="material-icons">dashboard</i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Stats</span>
                                     </p>
                                 </a>
-                            </li>
+                            </li>*@
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">person</i>
@@ -155,23 +155,23 @@
                     <nav class="pull-left">
                         <ul>
                             <li>
-                                <a href="https://www.creative-tim.com">
-                                    Creative Tim
+                                <a href="http://www.csfdigital.com.br/">
+                                    CSF - Digital
                                 </a>
                             </li>
                             <li>
-                                <a href="http://presentation.creative-tim.com">
-                                    About Us
+                                <a href="http://www.csfdigital.com.br/sobre.php">
+                                    Sobre nós
                                 </a>
                             </li>
                             <li>
-                                <a href="http://blog.creative-tim.com">
-                                    Blog
+                                <a href="http://www.csfdigital.com.br/servicos.php">
+                                   Serviços
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www.creative-tim.com/license">
-                                    Licenses
+                                <a href="http://www.csfdigital.com.br/contato.php">
+                                    Contato
                                 </a>
                             </li>
                         </ul>
@@ -181,7 +181,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script>, made with love by
-                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                        <a href="http://www.csfdigital.com.br/" target="_blank">CSF Digital</a>
                     </div>
                 </div>
             </footer>
@@ -315,70 +315,182 @@
     });
 </script>
 <script>
-    //Paginar1('TabelaTonerBaixo');
-    //Paginar1("TabelaDisponibilidade");
+    sessionStorage.setItem("paginaIni", "1");
+    sessionStorage.setItem("paginaFim", "11");
 
-    var tabela = document.getElementById("TabelaTonerBaixo");
-    var linhas = tabela.rows;
-
-    for (var i = 1; i < linhas.length; i++) {
-        if (i > 0 && i < 10) {
-            linhas[i].style.display = "table-row";
-        } else {
-            linhas[i].style.display = "none";
+    function DefaultLinhasEquipamentos() {
+        var tabela = document.getElementById("tabelaEquipamentos");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
         }
     }
-    var tabela = document.getElementById("TabelaDisponibilidade");
-    var linhas = tabela.rows;
-
-    for (var i = 1; i < linhas.length; i++) {
-        if (i > 0 && i < 10) {
-            linhas[i].style.display = "table-row";
-        } else {
-            linhas[i].style.display = "none";
+    function DefaultLinhasSetores() {
+        var tabela = document.getElementById("tabelaSetores");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
         }
     }
 
-    @*function PaginarGenericoProx(nome)
-    {
-        @ViewBag.Inicio = @ViewBag.QuantPag + @ViewBag.Inicio ;
+    function DefaultLinhasDashboard() {
+        var tabela = document.getElementById("TabelaTonerBaixo");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+
+        var tabela = document.getElementById("TabelaDisponibilidade");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+
+    }
+    
+    function DefaultLinhasRelatorio() {
+
+        var tabela2 = document.getElementById("tabRelatorioFaturamento");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+
+
+        var tabela2 = document.getElementById("tabRelatorioArqImpre");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+    }
+
+    
+    
+
+
+    //$("#Proxima").click(function () {
+    //    var tabela = $(this).parents(".card-body").children()[0];
+    //    alert(tabela.rows.length);
+    //    var linhas = tabela.rows;
+
+    //    for (var i = 1; i < linhas.length; i++) {
+    //        linhas[i].style.display = "none";
+    //        //alert(i + " " + "none");
+    //    }
+
+    //    var pagIni = parseInt(sessionStorage.paginaIni);
+    //    var pagFim = parseInt(sessionStorage.paginaFim);
+    //    pagIni = pagIni + 10;
+    //    pagFim = pagFim + 10;
+
+    //    //alert(pagIni);
+    //    //alert(pagFim);
+
+    //    sessionStorage.setItem("paginaIni", pagIni);
+    //    sessionStorage.setItem("paginaFim", pagFim);
+
+    //    //alert(sessionStorage.getItem("paginaIni"));
+    //    //alert(sessionStorage.getItem("paginaFim"));
+
+    //    for (var j = pagIni; j < pagFim; j++) {
+
+    //        linhas[j].style.display = "table-row";
+    //        //alert(j + " " + "table");
+    //    }
+    //});
+    
+    function ProximaPagina(nome) {
+   
 
         var tabela = document.getElementById(nome);
+
+        //alert(tabela.rows.length);
         var linhas = tabela.rows;
 
-        linhas.style.display = "none";
-
-        for (var i = @ViewBag.Inicio - 10; i < @ViewBag.Inicio; i++) {
-            linhas[i].style.display = "table-row";
+        for (var i = 1; i < linhas.length; i++) {
+            linhas[i].style.display = "none";
+            //alert(i + " " + "none");
         }
 
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
+        var pagIni = parseInt(sessionStorage.paginaIni);
+        var pagFim = parseInt(sessionStorage.paginaFim);
+        pagIni = pagIni + 10;
+        pagFim = pagFim + 10;
+
+        //alert(pagIni);
+        //alert(pagFim);
+
+        sessionStorage.setItem("paginaIni", pagIni);
+        sessionStorage.setItem("paginaFim", pagFim);
+
+        //alert(sessionStorage.getItem("paginaIni"));
+        //alert(sessionStorage.getItem("paginaFim"));
+
+        for (var j = pagIni; j < pagFim; j++) {
+
+            linhas[j].style.display = "table-row";
+            //alert(j + " " + "table");
+        }
+    }
+    function AnteriorPagina(nome) {
+
+        var tabela = document.getElementById(nome);
+
+        //alert(tabela.rows.length);
+        var linhas = tabela.rows;
+
+        for (var i = 1; i < linhas.length; i++) {
+            linhas[i].style.display = "none";
+            //alert(i + " " + "none");
+        }
+
+        var pagIni = parseInt(sessionStorage.paginaIni);
+        var pagFim = parseInt(sessionStorage.paginaFim);
+        pagIni = pagIni - 10;
+        pagFim = pagFim - 10;
+
+        //alert(pagIni);
+        //alert(pagFim);
+
+        sessionStorage.setItem("paginaIni", pagIni);
+        sessionStorage.setItem("paginaFim", pagFim);
+
+        //alert(sessionStorage.getItem("paginaIni"));
+        //alert(sessionStorage.getItem("paginaFim"));
+
+        for (var j = pagIni; j < pagFim; j++) {
+
+            linhas[j].style.display = "table-row";
+            //alert(j + " " + "table");
+        }
     }
 
 
-    function PaginarGenericoAnte(nome)
-    {
-        @ViewBag.Inicio =  @ViewBag.Inicio - 10;
-
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-
-        linhas.style.display = "none";
-
-        for (var i = @ViewBag.Inicio - 20; i < @ViewBag.Inicio; i++) {
-            linhas[i].style.display = "table-row";
-        }
-
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-    }*@
-
-
+    
 
     function Paginar1(nome) {
         var tabela = document.getElementById(nome);
@@ -497,6 +609,21 @@
 
     }
 
+    //DefaultLinhasDashboard();
+    //DefaultLinhas();
+
+</script>
+<script>
+    DefaultLinhasDashboard();
+</script>
+<script>
+    DefaultLinhasRelatorio();
+</script>
+<script>
+    DefaultLinhasEquipamentos();
+</script>
+<script>
+    DefaultLinhasSetores();
 </script>
 
 </html>

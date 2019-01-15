@@ -24,7 +24,7 @@
                     @Html.ValidationMessageFor(model => model.idLocalidade, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
-                    <label>Descrição</label>
+                    <label>Setor</label>
                     @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
                 </div>
@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Atualizar" class="btn btn-primary" />
                     </div>
                 </div>
             </div>

@@ -48,7 +48,7 @@ namespace Site.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idSetor,idLocalidade,descricao,centroCusto,status,cotaMensal")] CadastroSetor cadastroSetor)
+        public ActionResult Create([Bind(Include = "idSetor,idLocalidade,descricao,centroCusto,cotaMensal")] CadastroSetor cadastroSetor)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace Site.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            cadastroSetor.status = "1";
             ViewBag.idLocalidade = new SelectList(db.CadastroUnidade, "idLocalidade", "descricao", cadastroSetor.idLocalidade);
             return View(cadastroSetor);
         }

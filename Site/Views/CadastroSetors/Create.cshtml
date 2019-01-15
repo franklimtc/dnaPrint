@@ -26,29 +26,30 @@
 
                     <br />
                     <div class="form-group bmd-form-group">
-                        <label>Descrição</label>
+                        <label>Setor</label>
                         <br />
                         @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
+                        
                         @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group bmd-form-group">
-                        <label>Centro de Custo</label>
+                        <label>Codigo</label>
                         @Html.EditorFor(model => model.centroCusto, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.centroCusto, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col-md-4">
+                @*<div class="col-md-4">
                     <div class="form-group bmd-form-group">
                         <label>Status</label>
                         @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="col-md-4">
+                </div>*@
+                <div class="col-md-6">
                     <div class="form-group bmd-form-group">
                         <label>Cota Mensal</label>
                         @Html.EditorFor(model => model.cotaMensal, new { htmlAttributes = new { @class = "form-control" } })
@@ -60,7 +61,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
+                            <input type="submit" value="Adicionar" class="btn btn-primary" />
                         </div>
                     </div>
                 </div>
@@ -70,7 +71,7 @@
 
 </div>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {

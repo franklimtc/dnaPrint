@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table table-hover table-striped" style="text-align:center">
+                            <table id="tabRelatorioFaturamento" class="table table-hover table-striped" style="text-align:center">
                                 <tr>
                                     <th>
                                         @*@Html.DisplayName(model => model.CC)*@
@@ -41,26 +41,26 @@
                                         @*@Html.DisplayName(model => model.ip)*@
                                         IP
                                     </th>
-                                    <th>
-                                        @*@Html.DisplayNameFor(model => model.Iniimpressoes)*@
-                                        Inicio<br />Impressões
-                                    </th>
-                                    <th>
-                                        @*@Html.DisplayNameFor(model => model.Inicopias)*@
-                                        Inicio<br />Copias
-                                    </th>
+                                    @*<th>
+                    @Html.DisplayNameFor(model => model.Iniimpressoes)
+                    Inicio<br />Impressões
+                </th>*@
+                                    @*<th>
+                    @Html.DisplayNameFor(model => model.Inicopias)
+                    Inicio<br />Copias
+                </th>*@
                                     <th>
                                         @*@Html.DisplayNameFor(model => model.Initotal)*@
                                         Inicio<br />Total
                                     </th>
-                                    <th>
-                                        @*@Html.DisplayNameFor(model => model.Finimpressoes)*@
-                                        Final<br />Impressões
-                                    </th>
-                                    <th>
-                                        @*@Html.DisplayNameFor(model => model.Fincopias)*@
-                                        Final<br />Copia
-                                    </th>
+                                    @*<th>
+                    @Html.DisplayNameFor(model => model.Finimpressoes)
+                    Final<br />Impressões
+                </th>*@
+                                    @*<th>
+                    @Html.DisplayNameFor(model => model.Fincopias)
+                    Final<br />Copia
+                </th>*@
                                     <th>
                                         @*@Html.DisplayNameFor(model => model.Fintotal)*@
                                         Final<br />Total
@@ -114,27 +114,27 @@
 
                                                 @item.ip
                                             </td>
-                                            <td>
+                                            @*<td>
 
-                                                @item.Iniimpressoes
-                                            </td>
-                                            <td>
+                            @item.Iniimpressoes
+                        </td>
+                        <td>
 
-                                                @item.Inicopias
-                                            </td>
+                            @item.Inicopias
+                        </td>*@
 
                                             <td>
 
                                                 @item.Initotal
                                             </td>
-                                            <td>
+                                            @*<td>
 
-                                                @item.Finimpressoes
-                                            </td>
-                                            <td>
+                            @item.Finimpressoes
+                        </td>
+                        <td>
 
-                                                @item.Fincopias
-                                            </td>
+                            @item.Fincopias
+                        </td>*@
 
                                             <td>
 
@@ -167,6 +167,16 @@
                                 }
 
                             </table>
+                            <div class="row">
+                                <div class="col-md-12" style="text-align:center">
+                                    <nav aria-label="Navegação de página exemplo">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabRelatorioFaturamento')"><=</a></li>
+                                            <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabRelatorioFaturamento')">=></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -201,30 +211,30 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-striped" style="text-align:center">
+                        <table id="tabRelatorioArqImpre" class="table table-hover table-striped" style="text-align:center">
                             <tr>
-                                <th> 
+                                <th>
                                     ID
                                 </th>
                                 <th>
                                     Equipamento
-                                    
+
                                 </th>
                                 <th>
                                     Usuario
-                                   
+
                                 </th>
                                 <th>
-                                  
-                                   Arquivo
+
+                                    Arquivo
                                 </th>
                                 <th>
                                     Tipo Papel
-                                   
+
                                 </th>
                                 <th>
                                     Color
-                                   
+
                                 </th>
                                 <th>
 
@@ -232,17 +242,17 @@
                                 </th>
                                 <th>
                                     Paginas
-                                    
+
                                 </th>
                                 <th>
-                                 
+
                                     Total
                                 </th>
                                 <th>
                                     Data
                                 </th>
-                                
-                                
+
+
                             </tr>
                             @{
                                 foreach (var item in @ViewBag.dbArquivosImpressos)
@@ -255,14 +265,14 @@
                                         </td>
                                         <td>
                                             @item.PrinterName
-                                            
+
                                         </td>
                                         <td>
                                             @item.NotifyUserName
-                                           
+
                                         </td>
                                         <td>
-                                            
+
                                             @item.Document
                                         </td>
                                         <td>
@@ -270,11 +280,11 @@
                                         </td>
                                         <td>
                                             @item.Color
-                                            
+
                                         </td>
                                         <td>
                                             @item.Copies
-                                           
+
                                         </td>
                                         <td>
                                             @item.PagesPrinted
@@ -285,13 +295,24 @@
                                         </td>
 
                                         <td>
-                                            @item.Submitted.ToString("dd/mm/yyyy")
+                                            @item.Submitted.ToString("dd/MM/yyyy")
                                         </td>
                                     </tr>
                                 }
                             }
 
                         </table>
+                        
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center">
+                                <nav aria-label="Navegação de página exemplo">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabRelatorioArqImpre')"><=</a></li>
+                                        <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabRelatorioArqImpre')">=></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
