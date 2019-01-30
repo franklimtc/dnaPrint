@@ -79,7 +79,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card card-chart">
             <div class="card-header card-header-success">
                 <canvas id="ChartVolume" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
@@ -97,6 +97,66 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="card card-chart">
+            <div class="card-header card-header-success">
+                <canvas id="ChartTopEquip" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Top 5 Equipamentos</h4>
+                <p class="card-category">
+                    Top 5 equipamentos que mais produziram no mês de @DateTime.Now.Month
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-chart">
+            <div class="card-header card-header-success">
+                <canvas id="ChartTopUser" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Top 5 Usuarios</h4>
+                <p class="card-category">
+                    Top 5 usuarios que mais produziram no mês de @DateTime.Now.Month
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-chart">
+            <div class="card-header card-header-success">
+                <canvas id="ChartTopUserPrinter" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Top 5 Usuarios "Printer"</h4>
+                <p class="card-category">
+                    Top 5 usuarios "Printer" que mais produziram no mês de @DateTime.Now.Month
+                </p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+
+    </div>
     <div class="col-md-8">
         <div class="card" style="display:none" id="TabFalhas">
             <div class="card-header card-header-danger">
@@ -104,7 +164,7 @@
                 <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
             </div>
             <div class="card-body table-responsive">
-                <table  class="table table-hover">
+                <table class="table table-hover">
                     <thead class="text-warning">
                     <th>ID</th>
                     <th>Fila</th>
@@ -126,18 +186,18 @@
                         }
                     </tbody>
                 </table>
-               <div class="row">
-                <div class="col-md-12" style="text-align:center">
-                    <nav aria-label="Navegação de página exemplo">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
-                            <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
-                            <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
-                            <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
-                        </ul>
-                    </nav>
+                <div class="row">
+                    <div class="col-md-12" style="text-align:center">
+                        <nav aria-label="Navegação de página exemplo">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
+                                <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 
@@ -174,7 +234,7 @@
                             }
                         }
                     </tbody>
-                    
+
                 </table>
                 <div class="row">
                     <div class="col-md-12" style="text-align:center">
@@ -209,7 +269,7 @@
                     </thead>
                     <tbody>
                         @{
-                            foreach (var eqp in db.vw_suprimentos2.ToList().OrderBy(x=>x.Toner))
+                            foreach (var eqp in db.vw_suprimentos2.ToList().OrderBy(x => x.Toner))
                             {
                                 <tr>
                                     <td>@eqp.idEquipamento</td>
@@ -246,8 +306,6 @@
     </div>
 </div>
 
-<script runat="server" src="~/Scripts/Chart.js"></script>
-
 <script>
     var ctx = document.getElementById("ChartVolume").getContext('2d');
 
@@ -277,3 +335,11 @@
 
     });
 </script>
+
+
+
+
+
+
+
+

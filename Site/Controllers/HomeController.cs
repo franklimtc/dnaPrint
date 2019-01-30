@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Site.Models;
 
 
@@ -68,9 +69,64 @@ namespace Site.Controllers
             string usuuario = User.Identity.Name;
             usuuario = usuuario.Split('@').First();
             ViewBag.Usuario = usuuario;
+            
+
+
+
+            
+
             return View(tempBilhetagemSemanal.ToList());
         }
+        public ActionResult TopFiveEquipamentos()
+        {
 
+            List<string> TopEquipNames = db.vw_bilhetagemAtual.OrderBy(x => x.Initotal - x.Fintotal).Select(x => x.nome).Take(5).ToList();
+            List<int?> TopEquipValues = db.vw_bilhetagemAtual.OrderBy(x => x.Initotal - x.Fintotal).Select(x => x.Fintotal - x.Initotal).Take(5).ToList();
+
+            List<object> TopFive = new List<object>();
+            TopFive.Add(TopEquipNames);
+            TopFive.Add(TopEquipValues);
+
+            var json = new JavaScriptSerializer().Serialize(TopFive);
+
+            return Json(json);
+        }
+
+        public ActionResult TopFiveUsuario()
+        {
+            var results = from p in db.ArquivoImpresso.ToList() 
+                          group p.TotalPages by p.UserName into g
+                          select new { Usuario = g.Key , Total = g.ToList().Sum(x => x.Value)};
+
+            results = results.OrderByDescending(x => x.Total).Take(5).ToList();
+
+            List<string> TopEquipNames = results.Select(x=>x.Usuario).ToList();
+            List<int> TopEquipValues = results.Select(x=>x.Total).ToList();
+
+            var resultPrinter = from p in db.ArquivoImpresso.ToList().Where(x=>x.UserName.Equals("printer"))
+                                group p by p.MachineName into h
+                                select new { Usuario = h.Key,Total = h.Sum(x=>x.TotalPages)};
+
+
+
+            resultPrinter = resultPrinter.OrderByDescending(x=>x.Total).Take(5).ToList();
+
+            List<string> TopPrinterNames = resultPrinter.Select(x => x.Usuario).ToList();
+            List<int?> TopPrinterValues = resultPrinter.Select(x => x.Total).ToList();
+
+            List<object> TopFive = new List<object>();
+            TopFive.Add(TopEquipNames);
+            TopFive.Add(TopEquipValues);
+
+            TopFive.Add(TopPrinterNames);
+            TopFive.Add(TopPrinterValues);
+
+
+
+            var json = new JavaScriptSerializer().Serialize(TopFive);
+
+            return Json(json);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
