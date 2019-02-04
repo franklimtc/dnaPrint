@@ -566,6 +566,7 @@
     <Content Include="book\fonts\codropsicons\codropsicons.woff" />
     <Content Include="book\img\.DS_Store" />
     <Content Include="book\js\.DS_Store" />
+    <Content Include="assets\css\froufrou.ttf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

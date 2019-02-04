@@ -336,6 +336,36 @@
     });
 </script>
 
+<script>
+    function DefaultLinhasDashboard() {
+        var tabela = document.getElementById("TabelaTonerBaixo");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+
+        var tabela = document.getElementById("TabelaDisponibilidade");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+
+    }
+</script>
+<script>
+    DefaultLinhasDashboard();
+</script>
+
+
+
 
 
 

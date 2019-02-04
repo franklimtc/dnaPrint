@@ -71,15 +71,48 @@
         <div class="row">
             
             <div class="col-md-12">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">deletar</button>
 
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Deletar" class="btn btn-primary" />
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="border-bottom:none">
+                                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="text-align:center">
+                                <div id="ContExclamacao">
+                                    <svg width="300" height="200" viewBox="0 0 300 200" fill="none">
+                                        
+                                        <g id="content" transform="translate(150, 100)">
+                                            <circle cx="0" cy="0" r="60" stroke="red" stroke-width="1" fill="transparent"></circle>
+                                            <text text-anchor="middle" id="header" font-family="Bernard MT Condensed" fill="#334152" >
+                                                <tspan x="0" y="30" font-weight="bold"  font-size="70" fill="red">
+                                                    !
+                                                </tspan>
+                                            </text>
+                                        </g>
+                                    </svg>
+                                    <label style="font-family:MinhaFonte; font-size:25px" >Tem certeza que deseja deletar esse item?</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="border-top:none">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
 
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="Deletar" class="btn btn-danger" id="delete" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
                     </div>
-                }
+                </div>
+
             </div>
             
 

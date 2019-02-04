@@ -4,6 +4,10 @@
 /*
  * General styles
  */
+@font-face {
+    font-family: MinhaFonte;
+    src: url('froufrou.ttf');
+}
 footer {
     display:none;
 }

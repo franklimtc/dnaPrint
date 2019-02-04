@@ -56,14 +56,41 @@
         </table>
         <div class="row">
             <div class="col-md-12" style="text-align:center">
-                <nav aria-label="Navegação de página exemplo">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabelaSetores')" >Anterior</button>
+                    <button type="text" class="npag btn-secondary" disabled>1</button>
+                    <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabelaSetores')" >Proxima</button>
+                </div>
+                @*<nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabelaSetores')"><=</a></li>
+                        <li class="page-item">
+                            <a id="Anterior" class="btn-link" onclick="AnteriorPagina('tabelaSetores')">
+                                <button class="btn-primary">
+                                    Anterior
+                                </button>
+                            </a>
+                        </li>
+                        <li><label class="npag">1</label></li>
                         <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabelaSetores')">=></a></li>
                     </ul>
-                </nav>
+                </nav>*@
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    DefaultLinhasSetores();
+    function DefaultLinhasSetores() {
+        var tabela = document.getElementById("tabelaSetores");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
+    }
+</script>

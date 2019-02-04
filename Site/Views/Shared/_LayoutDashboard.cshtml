@@ -26,7 +26,7 @@
 <body class="">
     <script runat="server" src="~/Scripts/Chart.js"></script>
     <div class="wrapper">
-        <div runat="server" class="sidebar" data-color="purple" data-background-color="white" data-image="~/assets/img/sidebar-1.jpg">
+        <div runat="server" class="sidebar" data-color="purple" data-background-color="white" @*data-image="../assets/img/sidebar-1.jpg"*@ style="background-color:white">
             <!--
                 Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -93,7 +93,8 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        @*<form class="navbar-form">
+                        <form class="navbar-form">
+                            @*
                                 <div class="input-group no-border">
                                     <input type="text" value="" class="form-control" placeholder="Search...">
                                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -101,7 +102,9 @@
                                         <div class="ripple-container"></div>
                                     </button>
                                 </div>
-                            </form>*@
+                            *@
+
+                        </form>
                         <ul class="navbar-nav">
                             @*<li class="nav-item">
                                     <a class="nav-link" href="#pablo">
@@ -116,7 +119,7 @@
                                     <i class="material-icons">person</i>
                                     @*<span class="notification">5</span>*@
                                     <p>
-                                        <span class="d-lg-none d-md-block">Some Actions</span>
+                                        <span class="d-lg-none d-md-block">Usuario</span>
                                     </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -189,6 +192,351 @@
         </div>
     </div>
     @RenderSection("scripts", required: false)
+    <script>
+        sessionStorage.setItem("paginaIni", "1");
+        sessionStorage.setItem("paginaFim", "11");
+        sessionStorage.setItem("Npag", "1");
+
+        //function DefaultLinhasEquipamentos() {
+        //    var tabela = document.getElementById("tabelaEquipamentos");
+        //    var linhas = tabela.rows;
+        //    for (var i = 1; i < linhas.length; i++) {
+        //        if (i > 0 && i < 11) {
+        //            linhas[i].style.display = "table-row";
+        //        } else {
+        //            linhas[i].style.display = "none";
+        //        }
+        //    }
+        //}
+
+        //function DefaultLinhasSetores() {
+        //    var tabela = document.getElementById("tabelaSetores");
+        //    var linhas = tabela.rows;
+        //    for (var i = 1; i < linhas.length; i++) {
+        //        if (i > 0 && i < 11) {
+        //            linhas[i].style.display = "table-row";
+        //        } else {
+        //            linhas[i].style.display = "none";
+        //        }
+        //    }
+        //}
+
+        //function DefaultLinhasDashboard() {
+        //    var tabela = document.getElementById("TabelaTonerBaixo");
+        //    var linhas = tabela.rows;
+        //    for (var i = 1; i < linhas.length; i++) {
+        //        if (i > 0 && i < 11) {
+        //            linhas[i].style.display = "table-row";
+        //        } else {
+        //            linhas[i].style.display = "none";
+        //        }
+        //    }
+
+        //    var tabela = document.getElementById("TabelaDisponibilidade");
+        //    var linhas = tabela.rows;
+        //    for (var i = 1; i < linhas.length; i++) {
+        //        if (i > 0 && i < 11) {
+        //            linhas[i].style.display = "table-row";
+        //        } else {
+        //            linhas[i].style.display = "none";
+        //        }
+        //    }
+
+        //}
+
+        //function DefaultLinhasRelatorio() {
+
+        //    var tabela2 = document.getElementById("tabRelatorioFaturamento");
+        //    var linhas2 = tabela2.rows;
+        //    for (var i = 1; i < linhas2.length; i++) {
+        //        if (i > 0 && i < 11) {
+        //            linhas2[i].style.display = "table-row";
+        //        } else {
+        //            linhas2[i].style.display = "none";
+        //        }
+        //    }
+
+
+        //    var tabela2 = document.getElementById("tabRelatorioArqImpre");
+        //    var linhas2 = tabela2.rows;
+        //    for (var i = 1; i < linhas2.length; i++) {
+        //        if (i > 0 && i < 11) {
+        //            linhas2[i].style.display = "table-row";
+        //        } else {
+        //            linhas2[i].style.display = "none";
+        //        }
+        //    }
+        //}
+
+        //$("#Proxima").click(function () {
+        //    var tabela = $(this).parents(".card-body").children()[0];
+        //    alert(tabela.rows.length);
+        //    var linhas = tabela.rows;
+
+        //    for (var i = 1; i < linhas.length; i++) {
+        //        linhas[i].style.display = "none";
+        //        //alert(i + " " + "none");
+        //    }
+
+        //    var pagIni = parseInt(sessionStorage.paginaIni);
+        //    var pagFim = parseInt(sessionStorage.paginaFim);
+        //    pagIni = pagIni + 10;
+        //    pagFim = pagFim + 10;
+
+        //    //alert(pagIni);
+        //    //alert(pagFim);
+
+        //    sessionStorage.setItem("paginaIni", pagIni);
+        //    sessionStorage.setItem("paginaFim", pagFim);
+
+        //    //alert(sessionStorage.getItem("paginaIni"));
+        //    //alert(sessionStorage.getItem("paginaFim"));
+
+        //    for (var j = pagIni; j < pagFim; j++) {
+
+        //        linhas[j].style.display = "table-row";
+        //        //alert(j + " " + "table");
+        //    }
+        //});
+
+        function ProximaPagina(nome) {
+
+
+            var tabela = document.getElementById(nome);
+
+            //alert(tabela.rows.length);
+            var linhas = tabela.rows;
+            if (sessionStorage.paginaFim >= linhas.length) {
+
+            } else {
+                for (var i = 1; i < linhas.length; i++) {
+                    linhas[i].style.display = "none";
+                    //alert(i + " " + "none");
+                }
+                var pagIni = parseInt(sessionStorage.paginaIni);
+                var pagFim = parseInt(sessionStorage.paginaFim);
+                pagIni = pagIni + 10;
+                pagFim = pagFim + 10;
+
+                var npag = parseInt(sessionStorage.Npag);
+                npag = npag + 1;
+                
+                //alert(pagIni);
+                //alert(pagFim);
+
+                sessionStorage.setItem("Npag", npag);
+                sessionStorage.setItem("paginaIni", pagIni);
+                sessionStorage.setItem("paginaFim", pagFim);
+
+                //alert(sessionStorage.getItem("paginaIni"));
+                //alert(sessionStorage.getItem("paginaFim"));
+
+                if (nome == "tabRelatorioArqImpre") {
+                    document.getElementsByClassName("npagArq")[0].textContent = npag;
+                }
+                else {
+                    document.getElementsByClassName("npag")[0].textContent = npag;
+                }
+
+                //document.getElementsByClassName("npag")[0].textContent = npag;
+               
+
+                //$(".npag")
+
+                if (pagFim >= linhas.length) {
+                    for (var j = pagIni; j < linhas.length; j++) {
+
+                        linhas[j].style.display = "table-row";
+                        //alert(j + " " + "table");
+                    }
+
+                } else
+                {
+                    for (var j = pagIni; j < pagFim; j++) {
+
+                        linhas[j].style.display = "table-row";
+                        //alert(j + " " + "table");
+                    }
+                }
+
+                
+            }
+            
+           
+
+            
+        }
+        function AnteriorPagina(nome) {
+
+            var tabela = document.getElementById(nome);
+
+            //alert(tabela.rows.length);
+            var linhas = tabela.rows;
+
+            if (sessionStorage.paginaIni == "1") {
+
+            } else
+            {
+                for (var i = 1; i < linhas.length; i++) {
+                    linhas[i].style.display = "none";
+                    //alert(i + " " + "none");
+                }
+
+                var pagIni = parseInt(sessionStorage.paginaIni);
+                var pagFim = parseInt(sessionStorage.paginaFim);
+                pagIni = pagIni - 10;
+                pagFim = pagFim - 10;
+
+                //alert(pagIni);
+                //alert(pagFim);
+                var npag = parseInt(sessionStorage.Npag);
+                npag = npag - 1;
+
+                sessionStorage.setItem("Npag", npag);
+                sessionStorage.setItem("paginaIni", pagIni);
+                sessionStorage.setItem("paginaFim", pagFim);
+
+                //alert(sessionStorage.getItem("paginaIni"));
+                //alert(sessionStorage.getItem("paginaFim"));
+                if (nome == "tabRelatorioArqImpre") {
+                    document.getElementsByClassName("npagArq")[0].textContent = npag;
+                }
+                else {
+                    document.getElementsByClassName("npag")[0].textContent = npag;
+                }
+
+
+               
+
+                for (var j = pagIni; j < pagFim; j++) {
+
+                    linhas[j].style.display = "table-row";
+                    //alert(j + " " + "table");
+                }
+            }
+
+            
+        }
+
+        function Paginar1(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+
+            for (var i = 1; i < linhas.length; i++) {
+                if (i > 0 && i <= 10) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+        }
+        function Paginar2(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+
+            for (var i = 1; i < linhas.length; i++) {
+                if (i > 10 && i <= 20) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+
+        }
+        function Paginar3(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+            for (var i = 1; i < linhas.length; i++) {
+                if (i > 20 && i <= 30) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+
+        }
+        function Paginar4(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+            for (var i = 1; i < linhas.length; i++) {
+                if (i > 30 && i <= 40) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+
+        }
+        function Paginar5(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+            for (var i = 1; i < linhas.length; i++) {
+                if (i > 40 && i <= 50) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+
+        }
+        function Paginar6(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+            for (var i = 1; i < linhas.length; i++) {
+                if (i > 50 && i <= 60) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+
+        }
+        function Paginar6(nome) {
+            var tabela = document.getElementById(nome);
+            var linhas = tabela.rows;
+            for (var i = 1; i < linhas.length; i++) {
+                if (i >= 60 && i < 70) {
+                    linhas[i].style.display = "table-row";
+                } else {
+                    linhas[i].style.display = "none";
+                }
+            }
+            $('.pagination li').each(function (i) {
+                i.removeClass("disable");
+            });
+            $(this).addClass('disable');
+
+        }
+
+        //DefaultLinhasDashboard();
+        //DefaultLinhas();
+
+    </script>
+
 </body>
 <!--   Core JS Files   -->
 <script runat="server" src="~/assets/js/core/jquery.min.js"></script>
@@ -315,316 +663,18 @@
         }
     });
 </script>
+
 <script>
-    sessionStorage.setItem("paginaIni", "1");
-    sessionStorage.setItem("paginaFim", "11");
-
-    function DefaultLinhasEquipamentos() {
-        var tabela = document.getElementById("tabelaEquipamentos");
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i > 0 && i < 11) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-    }
-    function DefaultLinhasSetores() {
-        var tabela = document.getElementById("tabelaSetores");
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i > 0 && i < 11) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-    }
-
-    function DefaultLinhasDashboard() {
-        var tabela = document.getElementById("TabelaTonerBaixo");
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i > 0 && i < 11) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-
-        var tabela = document.getElementById("TabelaDisponibilidade");
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i > 0 && i < 11) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-
-    }
-
-    function DefaultLinhasRelatorio() {
-
-        var tabela2 = document.getElementById("tabRelatorioFaturamento");
-        var linhas2 = tabela2.rows;
-        for (var i = 1; i < linhas2.length; i++) {
-            if (i > 0 && i < 11) {
-                linhas2[i].style.display = "table-row";
-            } else {
-                linhas2[i].style.display = "none";
-            }
-        }
-
-
-        var tabela2 = document.getElementById("tabRelatorioArqImpre");
-        var linhas2 = tabela2.rows;
-        for (var i = 1; i < linhas2.length; i++) {
-            if (i > 0 && i < 11) {
-                linhas2[i].style.display = "table-row";
-            } else {
-                linhas2[i].style.display = "none";
-            }
-        }
-    }
-
-
-
-
-
-    //$("#Proxima").click(function () {
-    //    var tabela = $(this).parents(".card-body").children()[0];
-    //    alert(tabela.rows.length);
-    //    var linhas = tabela.rows;
-
-    //    for (var i = 1; i < linhas.length; i++) {
-    //        linhas[i].style.display = "none";
-    //        //alert(i + " " + "none");
-    //    }
-
-    //    var pagIni = parseInt(sessionStorage.paginaIni);
-    //    var pagFim = parseInt(sessionStorage.paginaFim);
-    //    pagIni = pagIni + 10;
-    //    pagFim = pagFim + 10;
-
-    //    //alert(pagIni);
-    //    //alert(pagFim);
-
-    //    sessionStorage.setItem("paginaIni", pagIni);
-    //    sessionStorage.setItem("paginaFim", pagFim);
-
-    //    //alert(sessionStorage.getItem("paginaIni"));
-    //    //alert(sessionStorage.getItem("paginaFim"));
-
-    //    for (var j = pagIni; j < pagFim; j++) {
-
-    //        linhas[j].style.display = "table-row";
-    //        //alert(j + " " + "table");
-    //    }
-    //});
-
-    function ProximaPagina(nome) {
-
-
-        var tabela = document.getElementById(nome);
-
-        //alert(tabela.rows.length);
-        var linhas = tabela.rows;
-
-        for (var i = 1; i < linhas.length; i++) {
-            linhas[i].style.display = "none";
-            //alert(i + " " + "none");
-        }
-
-        var pagIni = parseInt(sessionStorage.paginaIni);
-        var pagFim = parseInt(sessionStorage.paginaFim);
-        pagIni = pagIni + 10;
-        pagFim = pagFim + 10;
-
-        //alert(pagIni);
-        //alert(pagFim);
-
-        sessionStorage.setItem("paginaIni", pagIni);
-        sessionStorage.setItem("paginaFim", pagFim);
-
-        //alert(sessionStorage.getItem("paginaIni"));
-        //alert(sessionStorage.getItem("paginaFim"));
-
-        for (var j = pagIni; j < pagFim; j++) {
-
-            linhas[j].style.display = "table-row";
-            //alert(j + " " + "table");
-        }
-    }
-    function AnteriorPagina(nome) {
-
-        var tabela = document.getElementById(nome);
-
-        //alert(tabela.rows.length);
-        var linhas = tabela.rows;
-
-        for (var i = 1; i < linhas.length; i++) {
-            linhas[i].style.display = "none";
-            //alert(i + " " + "none");
-        }
-
-        var pagIni = parseInt(sessionStorage.paginaIni);
-        var pagFim = parseInt(sessionStorage.paginaFim);
-        pagIni = pagIni - 10;
-        pagFim = pagFim - 10;
-
-        //alert(pagIni);
-        //alert(pagFim);
-
-        sessionStorage.setItem("paginaIni", pagIni);
-        sessionStorage.setItem("paginaFim", pagFim);
-
-        //alert(sessionStorage.getItem("paginaIni"));
-        //alert(sessionStorage.getItem("paginaFim"));
-
-        for (var j = pagIni; j < pagFim; j++) {
-
-            linhas[j].style.display = "table-row";
-            //alert(j + " " + "table");
-        }
-    }
-
-
-
-
-    function Paginar1(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-
-        for (var i = 1; i < linhas.length; i++) {
-            if (i > 0 && i < 10) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-    }
-
-    function Paginar2(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-
-        for (var i = 1; i < linhas.length; i++) {
-            if (i >= 10 && i < 20) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-
-    }
-
-    function Paginar3(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i >= 20 && i < 30) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-
-    }
-
-    function Paginar4(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i >= 30 && i < 40) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-
-    }
-    function Paginar5(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i >= 40 && i < 50) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-
-    }
-    function Paginar6(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i >= 50 && i < 60) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-
-    }
-    function Paginar6(nome) {
-        var tabela = document.getElementById(nome);
-        var linhas = tabela.rows;
-        for (var i = 1; i < linhas.length; i++) {
-            if (i >= 60 && i < 70) {
-                linhas[i].style.display = "table-row";
-            } else {
-                linhas[i].style.display = "none";
-            }
-        }
-        $('.pagination li').each(function (i) {
-            i.removeClass("disable");
-        });
-        $(this).addClass('disable');
-
-    }
-
     //DefaultLinhasDashboard();
-    //DefaultLinhas();
-
 </script>
 <script>
-    DefaultLinhasDashboard();
+    //DefaultLinhasRelatorio();
 </script>
 <script>
-    DefaultLinhasRelatorio();
+    //DefaultLinhasEquipamentos();
 </script>
 <script>
-    DefaultLinhasEquipamentos();
-</script>
-<script>
-    DefaultLinhasSetores();
+    //DefaultLinhasSetores();
 </script>
 <script title="TopFiveEquipamentos">
 
@@ -761,17 +811,9 @@
     }
 
 </script>
+
 <script>
     TopFiveEquipamentos();
     TopFiveUsuarios();
 </script>
-<script>
-    Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        type: 'error',
-        confirmButtonText: 'Cool'
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 </html>

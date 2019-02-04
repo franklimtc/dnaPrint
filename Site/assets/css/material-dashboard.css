@@ -15,6 +15,7 @@
 
 /*     brand Colors              */
 
+
 .card {
   font-size: .875rem;
 }
@@ -18359,7 +18360,8 @@ Copyright (c) 2015 Daniel Eden
     height: 100%;
     width: 100%;
     position: absolute;
-    background-color: #282828;
+    background-color: white;
+    /*background-color: #282828;*/
     display: block;
     content: "";
     z-index: 1;

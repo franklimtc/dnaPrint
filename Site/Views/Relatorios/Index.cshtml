@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-md-6" style="text-align:start"><h2>Relatorio de Faturamento</h2></div>
                                 <div class="col-md-6" style="text-align:end">
-                                    <button class="btn btn-secondary">Exportar</button>
+                                    <button class="btn btn-secondary" disabled>Exportar</button>
                                     <button class="btn btn-secondary" id="VisualizarFaturamento" onclick="">Visualizar</button>
                                 </div>
                             </div>
@@ -169,12 +169,18 @@
                             </table>
                             <div class="row">
                                 <div class="col-md-12" style="text-align:center">
-                                    <nav aria-label="Navegação de página exemplo">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabRelatorioFaturamento')">Anterior</button>
+                                        <button type="text" class="npag btn-secondary" disabled>1</button>
+                                        <button id="Proxima" type="button" class="btn btn-secondary"  onclick="ProximaPagina('tabRelatorioFaturamento')">Proxima</button>
+                                    </div>
+
+                                    @*<nav aria-label="Navegação de página exemplo">
                                         <ul class="pagination justify-content-center">
                                             <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabRelatorioFaturamento')"><=</a></li>
                                             <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabRelatorioFaturamento')">=></a></li>
                                         </ul>
-                                    </nav>
+                                    </nav>*@
                                 </div>
                             </div>
                         </div>
@@ -204,7 +210,7 @@
                             </div>
 
                             <div class="col-md-6" style="text-align:end">
-                                <button class="btn btn-secondary">Exportar</button>
+                                <button class="btn btn-secondary" disabled>Exportar</button>
                                 <button class="btn btn-secondary" id="VisualizarArquivosImpressos" onclick="">Visualizar</button>
                             </div>
 
@@ -305,12 +311,19 @@
                         
                         <div class="row">
                             <div class="col-md-12" style="text-align:center">
-                                <nav aria-label="Navegação de página exemplo">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabRelatorioArqImpre')">Anterior</button>
+                                    <button type="text" class="npagArq btn-secondary" disabled>1</button>
+                                    <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabRelatorioArqImpre')">Proxima</button>
+                                </div>
+
+
+                                @*<nav aria-label="Navegação de página exemplo">
                                     <ul class="pagination justify-content-center">
                                         <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabRelatorioArqImpre')"><=</a></li>
                                         <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabRelatorioArqImpre')">=></a></li>
                                     </ul>
-                                </nav>
+                                </nav>*@
                             </div>
                         </div>
                     </div>
@@ -320,4 +333,31 @@
     
 
 
+<script>
+    function DefaultLinhasRelatorio() {
 
+        var tabela2 = document.getElementById("tabRelatorioFaturamento");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+
+
+        var tabela2 = document.getElementById("tabRelatorioArqImpre");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<script>
+    DefaultLinhasRelatorio();
+</script>
