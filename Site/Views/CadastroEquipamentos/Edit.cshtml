@@ -69,13 +69,50 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
+   
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border-bottom:none">
+                            <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="text-align:center">
+                            <div id="ContExclamacao">
+                                <svg width="300" height="200" viewBox="0 0 300 200" style="display:flex;margin-left:85px">
+                                    <g id="content" transform="translate(150, 100)">
+                                        <circle cx="0" cy="0" r="70" stroke="green" stroke-width="1" fill="transparent" />
+                                    </g>
+                                    <polygon points="100,90 140,120 220,50 225,38 140,110 100,83" style="fill:green;stroke:green;stroke-width:1; margin-left:90px" />
+                                </svg>
+                                <label style="font-family:MinhaFonte; font-size:25px">Atualizado</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="border-top:none">
+                            @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>*@
+                            @*@using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Deletar" class="btn btn-danger" id="delete"  data-target="#exampleModalCenter" data-toggle="modal">/>
+                                </div>
+                            }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="row">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.idEquipamento)
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Atualizar" class="btn btn-primary" />
+                        <input type="submit" value="Atualizar" class="btn btn-primary" data-target="#exampleModalCenter" data-toggle="modal" />
                     </div>
                 </div>
             </div>
