@@ -92,7 +92,7 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                    <i class="material-icons">access_time</i> Atualizado em @Model.Last().AtualizadoEm
                 </div>
             </div>
         </div>
@@ -105,12 +105,12 @@
             <div class="card-body">
                 <h4 class="card-title">Top 5 Equipamentos</h4>
                 <p class="card-category">
-                    Top 5 equipamentos que mais produziram no mês de @DateTime.Now.Month
+                    Top 5 equipamentos que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
                 </p>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                    <i class="material-icons">access_time</i> Atualizado em @DateTime.Now
                 </div>
             </div>
         </div>
@@ -123,12 +123,12 @@
             <div class="card-body">
                 <h4 class="card-title">Top 5 Usuarios</h4>
                 <p class="card-category">
-                    Top 5 usuarios que mais produziram no mês de @DateTime.Now.Month
+                    Top 5 usuarios que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
                 </p>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                    <i class="material-icons">access_time</i> Atualizado em  @DateTime.Now
                 </div>
             </div>
         </div>
@@ -141,12 +141,12 @@
             <div class="card-body">
                 <h4 class="card-title">Top 5 Usuarios "Printer"</h4>
                 <p class="card-category">
-                    Top 5 usuarios "Printer" que mais produziram no mês de @DateTime.Now.Month
+                    Top 5 usuarios "Printer" que mais produziram no mês de @DateTime.Now.ToString("MMMM",new System.Globalization.CultureInfo("pt-BR"))
                 </p>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @Model.First().AtualizadoEm
+                    <i class="material-icons">access_time</i> Atualizado em @DateTime.Now
                 </div>
             </div>
         </div>
