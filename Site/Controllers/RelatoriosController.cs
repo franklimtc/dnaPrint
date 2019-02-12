@@ -18,13 +18,24 @@ namespace Site.Controllers
         List<ArquivoImpresso> arqImpre = new List<ArquivoImpresso>();
 
         // GET: Relatorios
-        public ActionResult Index(string valor)
+        public ActionResult Index(string valor,DateTime? DataInicial,DateTime? DataFinal)
         {
             if (!String.IsNullOrEmpty(valor))
             {
                 arqImpre = db.ArquivoImpresso.Where(x => x.PrinterName.Contains(valor) || x.NotifyUserName.Contains(valor)).ToList();
                 
             }
+            
+            if (!DataInicial.Equals(null) && !DataFinal.Equals(null))
+            {
+                DataFinal.Value.AddDays(1);
+                arqImpre = db.ArquivoImpresso.Where(x=>x.Submitted>=DataInicial && x.Submitted<= DataFinal).ToList();
+            }
+
+
+
+
+
             ViewBag.dbArquivosImpressos =  arqImpre;
 
             //string sqlString = "select c.UF,b.cidade,d.descricao 'local', e.descricao 'setor', a.serie,a.nome 'fila',a.ip" +

@@ -246,9 +246,11 @@
     <Content Include="assets\assets-for-demo\js\vendor\split.min.js" />
     <Content Include="assets\assets-for-demo\js\vertical-nav.js" />
     <Content Include="assets\assets-for-demo\modernizr.js" />
+    <Content Include="assets\css\font-awesome.css" />
     <Content Include="assets\css\Login.css" />
     <Content Include="assets\css\material-dashboard.css" />
     <Content Include="assets\css\material-dashboard.min.css" />
+    <Content Include="assets\css\MaterialIcones.css" />
     <Content Include="assets\css\Start.css" />
     <Content Include="assets\img\apple-icon.png" />
     <Content Include="assets\img\background.png" />
