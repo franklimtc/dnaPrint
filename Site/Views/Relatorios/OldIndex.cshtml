@@ -1,0 +1,216 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Site.Models.ArquivoImpresso>
+
+@{
+    ViewBag.Title = "Relatorios";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" id="RelatorioFaturamento">
+            @Html.Partial("RelatFaturamento")
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" id="RelatorioArquivosImpressos">
+            <div class="card-header card-header-primary">
+                <div class="row">
+                    <div class="col-md-6" style="text-align:start">
+                        <h2>Relatorio de Arquivos Impressos</h2>
+                        @using (Html.BeginForm())
+                        {
+
+                            <div class="input-group no-border">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="row" style="color:#ab47bc">
+                                            Invisivel
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" value="@ViewBag.valor" id="valor" name="valor" class="form-control" placeholder="Usuario ou Equipamento" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            Data Inicial
+                                        </div>
+                                        <div class="row">
+                                            <input type="date" value="@ViewBag.dtIni" id="DataInicial" name="DataInicial" class="form-control" style="color: white;" required="required">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            Data Final
+                                        </div>
+                                        <div class="row">
+                                            <input type="date" value="@ViewBag.dtFin" id="DataFinal" name="DataFinal" class="form-control" style="color: white;" required="required">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-1">
+
+                                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                            <i class="material-icons">search</i>
+                                            <div class="ripple-container"></div>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                    </div>
+
+                    <div class="col-md-6" style="text-align:end">
+                        <button class="btn btn-secondary" disabled>Exportar</button>
+                        <button class="btn btn-secondary" id="VisualizarArquivosImpressos" onclick="">Visualizar</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                
+                @using (Html.BeginForm())
+                {
+                    <table id="tabRelatorioArqImpre" class="table table-hover table-striped" style="text-align:center">
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Equipamento
+
+                            </th>
+                            <th>
+                                Usuario
+
+                            </th>
+                            <th>
+
+                                Arquivo
+                            </th>
+                            <th>
+                                Tipo Papel
+
+                            </th>
+                            <th>
+                                Color
+
+                            </th>
+                            <th>
+
+                                Copias
+                            </th>
+                            <th>
+                                Paginas
+
+                            </th>
+                            <th>
+
+                                Total
+                            </th>
+                            <th>
+                                Data
+                            </th>
+
+
+                        </tr>
+
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model[i].id</td>
+                                <td>@Model[i].PrinterName</td>
+                                <td>@Model[i].NotifyUserName</td>
+                                <td>@Model[i].Document</td>
+                                <td>@Model[i].PaperKind</td>
+                                <td>@Model[i].Color</td>
+                                <td>@Model[i].Copies</td>
+                                <td>@Model[i].PagesPrinted</td>
+                                <td>@Model[i].TotalPages</td>
+                                <td>@Model[i].Submitted.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    </table>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav>
+
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                               new PagedListRenderOptions {
+                                   UlElementClasses = new List<string>{ "pagination justify-content-center" },
+                                   LiElementClasses =  new List<string> { "page-item" },
+                                   ContainerDivClasses = new List<string> {""}
+                               })
+
+                            </nav>
+                        </div>
+                    </div>
+                    
+
+                    
+
+
+                }
+            </div>
+
+                    @*<div class="row">
+                        <div class="col-md-12" style="text-align:center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabRelatorioArqImpre')">Anterior</button>
+                                <button type="text" class="npagArq btn-secondary" disabled>1</button>
+                                <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabRelatorioArqImpre')">Proxima</button>
+                            </div>
+
+
+                            @*<nav aria-label="Navegação de página exemplo">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabRelatorioArqImpre')"><=</a></li>
+                                <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabRelatorioArqImpre')">=></a></li>
+                            </ul>
+                        </nav>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script>
+    function DefaultLinhasRelatorio() {
+
+        var tabela2 = document.getElementById("tabRelatorioFaturamento");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+
+
+        var tabela2 = document.getElementById("tabRelatorioArqImpre");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<script>
+    DefaultLinhasRelatorio();
+</script>

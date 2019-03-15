@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Site.Models;
+using PagedList;
 
 namespace Site.Controllers
 {
@@ -15,10 +16,13 @@ namespace Site.Controllers
         private ModeldnaPrint db = new ModeldnaPrint();
 
         // GET: CadastroEquipamentos
-        public ActionResult Index()
+        public ActionResult Index(int? pagina=1)
         {
+            
+           
             var cadastroEquipamentos = db.CadastroEquipamentos.Include(c => c.CadastroCidade).Include(c => c.CadastroEquipamentoModelo).Include(c => c.CadastroEstado).Include(c => c.CadastroSetor).Include(c => c.CadastroUnidade);
-            return View(cadastroEquipamentos.Where(x => x.status == true).ToList());
+
+            return View(cadastroEquipamentos.Where(x => x.status == true).ToList().ToPagedList((int)pagina, 10));
         }
 
         // GET: CadastroEquipamentos/Details/5

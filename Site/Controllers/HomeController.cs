@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,6 +13,7 @@ using Site.Models;
 
 namespace Site.Controllers
 {
+    
     public class HomeController : Controller
     {
         private ModeldnaPrint db = new ModeldnaPrint();
@@ -69,13 +71,25 @@ namespace Site.Controllers
             string usuuario = User.Identity.Name;
             usuuario = usuuario.Split('@').First();
             ViewBag.Usuario = usuuario;
-            
+        
+           
+           return View(tempBilhetagemSemanal.ToList());
+
+
+        }
+        public ActionResult GraficoVolumeMensalPorModelo(int? ano)
+        {
+            if (ano.Equals(null)) { ano = DateTime.Now.Year; }
 
 
 
-            
+            List<VW_VolumeMensalPorEquip> VolMenPEquip = db.VW_VolumeMensalPorEquip.Where(x=>x.ano==ano).ToList();
+            //VolMenPEquip.AddRange(db.VW_VolumeMensalPorEquip.Where(x => x.idModeloEquipamento == 2).ToList());
 
-            return View(tempBilhetagemSemanal.ToList());
+
+            var json = new JavaScriptSerializer().Serialize(VolMenPEquip);
+
+            return Json(json);
         }
         public ActionResult TopFiveEquipamentos()
         {
@@ -91,7 +105,6 @@ namespace Site.Controllers
 
             return Json(json);
         }
-
         public ActionResult TopFiveUsuario()
         {
             var results = from p in db.ArquivoImpresso.ToList() 

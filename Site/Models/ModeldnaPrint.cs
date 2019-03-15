@@ -26,6 +26,7 @@ namespace Site.Models
 
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<ArquivoImpresso> ArquivoImpresso { get; set; }
+        public virtual DbSet<VW_VolumeMensalPorEquip> VW_VolumeMensalPorEquip { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -377,6 +378,14 @@ namespace Site.Models
 
             modelBuilder.Entity<ArquivoImpresso>()
                 .Property(e => e.server)
+                .IsUnicode(false);
+            #endregion
+
+            //Adicionado VW_VolumeMensalPorEquip
+
+            #region VW_VolumeMensalPorEquip
+            modelBuilder.Entity<VW_VolumeMensalPorEquip>()
+                .Property(e => e.Modelo)
                 .IsUnicode(false);
             #endregion
 

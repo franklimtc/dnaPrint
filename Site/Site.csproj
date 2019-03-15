@@ -56,6 +56,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -222,12 +228,14 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModeldnaPrint.cs" />
+    <Compile Include="Models\ModeloVWRelatorios.cs" />
     <Compile Include="Models\tempBilhetagemSemanal.cs" />
     <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Models\vw_bilhetagemAtual.cs" />
     <Compile Include="Models\vw_disponibilidade3.cs" />
     <Compile Include="Models\vw_ErrosEquipamentos.cs" />
     <Compile Include="Models\vw_suprimentos2.cs" />
+    <Compile Include="Models\VW_VolumeMensalPorEquip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -272,6 +280,7 @@
     <Content Include="assets\js\bootstrap-material-design.min.js" />
     <Content Include="assets\js\core\jquery.min.js" />
     <Content Include="assets\js\core\popper.min.js" />
+    <Content Include="assets\js\GraficosDashboard.js" />
     <Content Include="assets\js\material-dashboard.js" />
     <Content Include="assets\js\plugins\arrive.min.js" />
     <Content Include="assets\js\plugins\bootstrap-notify.js" />
@@ -299,6 +308,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -1041,7 +1051,11 @@
     <Content Include="Views\Relatorios\Delete.cshtml" />
     <Content Include="Views\Relatorios\Details.cshtml" />
     <Content Include="Views\Relatorios\Edit.cshtml" />
+    <Content Include="Views\Relatorios\OldIndex.cshtml" />
+    <Content Include="Views\Relatorios\RelatFaturamento.cshtml" />
     <Content Include="Views\Relatorios\Index.cshtml" />
+    <Content Include="Views\Relatorios\ArquivosImpr.cshtml" />
+    <Content Include="Views\Relatorios\RalatorioFaturamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

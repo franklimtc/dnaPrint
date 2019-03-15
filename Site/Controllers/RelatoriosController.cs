@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using Site.Models;
 
 namespace Site.Controllers
@@ -15,90 +16,147 @@ namespace Site.Controllers
     public class RelatoriosController : Controller
     {
         private ModeldnaPrint db = new ModeldnaPrint();
+
         List<ArquivoImpresso> arqImpre = new List<ArquivoImpresso>();
+        private static DateTime? dtFinal;
+        private static DateTime? dtInicial;
+        private static DateTime? dtIniFat;
+        private static DateTime? dtFimFat;
+        private static string Valor;
 
+        #region OldIndex
         // GET: Relatorios
-        public ActionResult Index(string valor,DateTime? DataInicial,DateTime? DataFinal)
+        //public ActionResult Index(int? page,string valor,DateTime? DataInicial,DateTime? DataFinal)
+        //{
+        //    int paginaIni;
+        //    int paginaFim;
+
+        //    if (page.Equals(null))
+        //    {
+        //        paginaIni = 1;
+        //        paginaFim = 10;
+        //    }
+        //    else
+        //    {
+        //        paginaIni = (int) page;
+        //        paginaFim = 10;
+        //    }
+
+        //    if (!DataInicial.Equals(null) && !DataFinal.Equals(null) && !String.IsNullOrEmpty(valor))
+        //    {
+        //        DataFinal.Value.AddDays(1);
+        //        arqImpre = db.ArquivoImpresso.Where(x => x.Submitted >= DataInicial && x.Submitted <= DataFinal && x.PrinterName.Contains(valor) || x.NotifyUserName.Contains(valor)).ToList();
+
+        //        Valor = valor;
+        //        dtFinal = DataFinal;
+        //        dtInicial = DataInicial;
+
+        //        ViewBag.dtIni = dtInicial.Value.ToString("yyyy-MM-dd");
+        //        ViewBag.dtFin = dtFinal.Value.ToString("yyyy-MM-dd");
+        //        ViewBag.valor = Valor;
+
+        //        return View(arqImpre.ToPagedList(paginaIni, paginaFim));
+        //    }else
+        //    if (!dtInicial.Equals(null) && !dtFinal.Equals(null) && !String.IsNullOrEmpty(Valor))
+        //    {
+        //        arqImpre = db.ArquivoImpresso.Where(x => x.Submitted >= dtInicial && x.Submitted <= dtFinal && x.PrinterName.Contains(Valor) || x.NotifyUserName.Contains(Valor)).ToList();
+
+        //        ViewBag.dtIni = dtInicial.Value.ToString("yyyy-MM-dd");
+        //        ViewBag.dtFin = dtFinal.Value.ToString("yyyy-MM-dd");
+        //        ViewBag.valor = Valor;
+
+        //        return View(arqImpre.ToPagedList(paginaIni, paginaFim));
+        //    }
+
+        //    arqImpre = db.ArquivoImpresso.Take(100).ToList();
+
+
+        //    return View(arqImpre.ToPagedList(paginaIni, paginaFim));
+
+
+
+        //}
+        #endregion
+
+        // Get: Relatorios Com Paginação
+        public ActionResult Index(DateTime? DtIniArq , DateTime? DtFimArq,string valorArq, DateTime? DtIniFatura, DateTime? DtFimFatura,int? pageFaturamento = 1,int? pageArquivoImpr = 1 )
         {
-            if (!String.IsNullOrEmpty(valor))
+            ModeloVWRelatorios retorno = new ModeloVWRelatorios();
+            
+            #region Arquivos Impressos 
+
+            if (!DtIniArq.Equals(null) && !DtFimArq.Equals(null) && !String.IsNullOrEmpty(valorArq))
             {
-                arqImpre = db.ArquivoImpresso.Where(x => x.PrinterName.Contains(valor) || x.NotifyUserName.Contains(valor)).ToList();
+                DtFimArq.Value.AddDays(1);
+                arqImpre = db.ArquivoImpresso.Where(x => x.Submitted >= DtIniArq 
+                                                    && x.Submitted <= DtFimArq 
+                                                    && (x.PrinterName.Contains(valorArq) || x.NotifyUserName.Contains(valorArq))
+                                                    ).ToList();
+
+                retorno.ArquivosImpressos = arqImpre.ToPagedList((int)pageArquivoImpr, 10);
+
+                ViewBag.dtIni = DtIniArq.Value.ToString("yyyy-MM-dd");
+                ViewBag.dtFin = DtFimArq.Value.ToString("yyyy-MM-dd");
+                ViewBag.valor = valorArq;
+
+                dtFinal = DtFimArq;
+                dtInicial = DtIniArq;
+                Valor = valorArq;
+            }else
+            if (!dtFinal.Equals(null) && !dtInicial.Equals(null) && !String.IsNullOrEmpty(Valor))
+            {
                 
+                arqImpre = db.ArquivoImpresso.Where(x => x.Submitted >= dtInicial 
+                                                && x.Submitted <= dtFinal 
+                                                && (x.PrinterName.Contains(Valor) || x.NotifyUserName.Contains(Valor))
+                                                ).ToList();
+
+                retorno.ArquivosImpressos = arqImpre.ToPagedList((int)pageArquivoImpr, 10);
+
+                ViewBag.dtIni = dtInicial.Value.ToString("yyyy-MM-dd");
+                ViewBag.dtFin = dtFinal.Value.ToString("yyyy-MM-dd");
+                ViewBag.valor = Valor;
+
             }
-            
-            if (!DataInicial.Equals(null) && !DataFinal.Equals(null))
+            else
             {
-                DataFinal.Value.AddDays(1);
-                arqImpre = db.ArquivoImpresso.Where(x=>x.Submitted>=DataInicial && x.Submitted<= DataFinal).ToList();
+                retorno.ArquivosImpressos = db.ArquivoImpresso.Take(1000).ToList().ToPagedList((int)pageArquivoImpr, 10);
             }
+            #endregion
+
+            #region Faturamento
+            retorno.Faturamento = db.vw_bilhetagemAtual.ToList().ToPagedList((int)pageFaturamento, 10);
+
+            if (!DtIniFatura.Equals(null) && !DtFimFatura.Equals(null))
+            {
+                DtFimFatura.Value.AddDays(1);
+                retorno.Faturamento = db.vw_bilhetagemAtual.ToList().ToPagedList((int)pageFaturamento, 10);
 
 
+                ViewBag.DtIniFatura = DtIniFatura.Value.ToString("yyyy-MM-dd");
+                ViewBag.DtFimFatura = DtIniFatura.Value.ToString("yyyy-MM-dd");
+
+                dtIniFat = DtIniFatura;
+                dtFimFat = DtFimFatura;
+
+            }
+            else if (!dtIniFat.Equals(null) && !dtFimFat.Equals(null))
+            {
+                retorno.Faturamento = db.vw_bilhetagemAtual.ToList().ToPagedList((int)pageFaturamento, 10);
 
 
+                ViewBag.DtIniFatura = dtIniFat.Value.ToString("yyyy-MM-dd");
+                ViewBag.DtFimFatura = dtFimFat.Value.ToString("yyyy-MM-dd");
 
-            ViewBag.dbArquivosImpressos =  arqImpre;
+            }
+            else
+            {
+                retorno.Faturamento = db.vw_bilhetagemAtual.Take(1000).ToList().ToPagedList((int)pageFaturamento, 10);
+            }
+            #endregion
 
-            //string sqlString = "select c.UF,b.cidade,d.descricao 'local', e.descricao 'setor', a.serie,a.nome 'fila',a.ip" +
-            //    " , (f.total_pf_color + f.total_pf_mono + f.total_gf_color + f.total_gf_mono + total_pf_mono_simples + total_pf_mono_duplex) 'Contador'  " +
-            //    " , CASE                                                                                                                                 " +
-            //    "  WHEN f.black is not null THEN f.black                                                                                                 " +
-            //    "  WHEN f.toner_total_pr = 0 and f.black is null THEN 0                                                                                  " +
-            //    "  ELSE (cast(f.toner_atual_pr as float) / cast(f.toner_total_pr as float) ) * 100                                                       " +
-            //    " END AS 'qtdTonerPr'                                                                                                                    " +
-            //    " , CASE                                                                                                                                 " +
-            //    "  WHEN f.cyan is not null THEN f.cyan                                                                                                   " +
-            //    "  WHEN f.toner_total_ci = 0 and f.cyan is null THEN 0                                                                                   " +
-            //    "  ELSE (cast(f.toner_atual_ci as float) / cast(f.toner_total_ci as float) ) * 100                                                       " +
-            //    " END AS 'qtdTonerCi'                                                                                                                    " +
-            //    " , CASE                                                                                                                                 " +
-            //    "  WHEN f.yellow is not null THEN f.yellow                                                                                               " +
-            //    "  WHEN f.toner_total_am = 0 and f.yellow is null THEN 0                                                                                 " +
-            //    "  ELSE (cast(f.toner_atual_am as float) / cast(f.toner_total_am as float) ) * 100                                                       " +
-            //    " END AS 'qtdTonerAm'                                                                                                                    " +
-            //    " , CASE                                                                                                                                 " +
-            //    "  WHEN f.magenta is not null THEN f.magenta                                                                                             " +
-            //    "  WHEN f.toner_total_ma = 0 and f.magenta is null THEN 0                                                                                " +
-            //    "  ELSE (cast(f.toner_atual_ma as float) / cast(f.toner_total_ma as float) ) * 100                                                       " +
-            //    " END AS 'qtdTonerMa'                                                                                                                    " +
-            //    " , CASE                                                                                                                                 " +
-            //    "  WHEN f.cilindro_total = 0 THEN 0                                                                                                      " +
-            //    "  ELSE (cast(f.cilindro_atual as float) / cast(f.cilindro_total as float) ) * 100                                                       " +
-            //    " END AS 'qtdCilindro'                                                                                                                   " +
-            //    " ,f.data                                                                                                                                " +
-            //    " from CadastroEquipamentos as a                                                                                                         " +
-            //    " left join CadastroCidade as b on a.idCidade=b.idCidade                                                                                 " +
-            //    " left join CadastroEstado as c on a.idEstado=c.idEstado                                                                                 " +
-            //    " left join CadastroUnidade as d on a.idLocalidade=d.idLocalidade                                                                        " +
-            //    " left join  CadastroSetor as e on a.idSetor=e.idSetor                                                                                   " +
-            //    " left join                                                                                                                              " +
-            //    " (                                                                                                                                      " +
-            //    "  select * from DadosDisparos where idDisparo in                                                                                        " +
-            //    "  (select max(idDisparo) from DadosDisparos  group by idEquipamento)                                                                    " +
-            //    " ) as f on a.serie=f.serie                                                                                                              " +
-            //    ")                                                                                                                                       " ;
-            
-
-            //using (var con = new EntityConnection("name=ModeldnaPrint"))
-            //{
-            //    con.Open();
-            //    EntityCommand cmd = con.CreateCommand();
-            //    cmd.CommandText = sqlString;
-            //    Dictionary<int, string> dict = new Dictionary<int, string>();
-            //    using (EntityDataReader rdr = cmd.ExecuteReader(CommandBehavior.SequentialAccess | CommandBehavior.CloseConnection))
-            //    {
-            //        while (rdr.Read())
-            //        {
-            //            int a = rdr.GetInt32(0);
-            //            var b = rdr.GetString(1);
-            //            dict.Add(a, b);
-            //        }
-            //    }
-            //}
-
-
-            return View();
+            return View(retorno);
         }
-       
         
         // GET: Relatorios/Details/5
         public ActionResult Details(int? id)

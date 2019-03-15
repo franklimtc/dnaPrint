@@ -80,231 +80,263 @@
 </div>
 <div class="row">
     <div class="col-md-3">
-        <div class="card card-chart">
-            <div class="card-header card-header-success">
-                <canvas id="ChartVolume" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Volume diário</h4>
-                <p class="card-category">
-                    @*<span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.*@
-                </p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @Model.Last().AtualizadoEm
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-chart">
-            <div class="card-header card-header-success">
-                <canvas id="ChartTopEquip" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Top 5 Equipamentos</h4>
-                <p class="card-category">
-                    Top 5 equipamentos que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
-                </p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @DateTime.Now
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-chart">
-            <div class="card-header card-header-success">
-                <canvas id="ChartTopUser" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Top 5 Usuarios</h4>
-                <p class="card-category">
-                    Top 5 usuarios que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
-                </p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em  @DateTime.Now
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card card-chart">
-            <div class="card-header card-header-success">
-                <canvas id="ChartTopUserPrinter" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Top 5 Usuarios "Printer"</h4>
-                <p class="card-category">
-                    Top 5 usuarios "Printer" que mais produziram no mês de @DateTime.Now.ToString("MMMM",new System.Globalization.CultureInfo("pt-BR"))
-                </p>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> Atualizado em @DateTime.Now
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-
-    <div class="col-md-4">
-
-    </div>
-    <div class="col-md-8">
-        <div class="card" style="display:none" id="TabFalhas">
-            <div class="card-header card-header-danger">
-                <h4 class="card-title">Equipamentos com falha</h4>
-                <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
-            </div>
-            <div class="card-body table-responsive">
-                <table class="table table-hover">
-                    <thead class="text-warning">
-                    <th>ID</th>
-                    <th>Fila</th>
-                    <th>Série</th>
-                    <th>IP</th>
-                    </thead>
-                    <tbody>
-                        @{
-                            Site.Models.ModeldnaPrint db = new Site.Models.ModeldnaPrint();
-                            foreach (var eqp in db.vw_ErrosEquipamentos)
-                            {
-                                <tr>
-                                    <td>@eqp.idEquipamento</td>
-                                    <td>@eqp.Fila</td>
-                                    <td>@eqp.serie</td>
-                                    <td>@eqp.ip</td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-                <div class="row">
-                    <div class="col-md-12" style="text-align:center">
-                        <nav aria-label="Navegação de página exemplo">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
-                            </ul>
-                        </nav>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <canvas id="ChartVolume" style="background-color:white; padding-top:10px;padding-right:10px;"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Volume diário</h4>
+                        <p class="card-category">
+                            Volume de Impressão e copia semanal 
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> Atualizado em @Model.Last().AtualizadoEm
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- ///////////////////////////////////////////////////////// -->
-
-        <div id="TabDisponibilidade" class="card">
-            <div class="card-header card-header-warning">
-                <h4 class="card-title">Equipamentos Disponiveis</h4>
-                <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <canvas id="ChartTopEquip" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Top 5 Equipamentos</h4>
+                        <p class="card-category">
+                            Top 5 equipamentos que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> Atualizado em @DateTime.Now
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body table-responsive">
-                <table id="TabelaDisponibilidade" class="table table-hover">
-                    <thead class="text-warning">
-                    <th>ID</th>
-                    <th>Ambiente</th>
-                    <th>IP</th>
-                    <th>Status</th>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var eqp in db.vw_disponibilidade3.ToList().OrderByDescending(x => x.qtdDias))
-                            {
-                                <tr>
-                                    <td>@eqp.idEquipamento</td>
-                                    <td>@eqp.Ambiente</td>
-                                    <td>@eqp.ip</td>
-                                    <td>
-                                        @if (eqp.qtdDias > 0)
-                                        {<label class="text-danger">Offline</label> }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <canvas id="ChartGraficoVolumeMensalPorModelo" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Volume Mensal Por Modelo</h4>
+                        <p class="card-category">
+                            @*<span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.*@
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> Atualizado em @Model.Last().AtualizadoEm
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="display:none" id="TabFalhas">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Equipamentos com falha</h4>
+                        <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                            <th>ID</th>
+                            <th>Fila</th>
+                            <th>Série</th>
+                            <th>IP</th>
+                            </thead>
+                            <tbody>
+                                @{
+                                    Site.Models.ModeldnaPrint db = new Site.Models.ModeldnaPrint();
+                                    foreach (var eqp in db.vw_ErrosEquipamentos)
+                                    {
+                                        <tr>
+                                            <td>@eqp.idEquipamento</td>
+                                            <td>@eqp.Fila</td>
+                                            <td>@eqp.serie</td>
+                                            <td>@eqp.ip</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center">
+                                <nav aria-label="Navegação de página exemplo">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ///////////////////////////////////////////////////////// -->
+
+                <div id="TabDisponibilidade" class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Equipamentos Disponiveis</h4>
+                        <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table id="TabelaDisponibilidade" class="table table-hover">
+                            <thead class="text-warning">
+                            <th>ID</th>
+                            <th>Ambiente</th>
+                            <th>IP</th>
+                            <th>Status</th>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var eqp in db.vw_disponibilidade3.ToList().OrderByDescending(x => x.qtdDias))
+                                    {
+                                        <tr>
+                                            <td>@eqp.idEquipamento</td>
+                                            <td>@eqp.Ambiente</td>
+                                            <td>@eqp.ip</td>
+                                            <td>
+                                                @if (eqp.qtdDias > 0)
+                                                {<label class="text-danger">Offline</label> }
+                                                else
+                                                {<label class="text-success">Online</label>}
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+
+                        </table>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center">
+                                <nav aria-label="Navegação de página exemplo">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaDisponibilidade')">1</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaDisponibilidade')">2</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaDisponibilidade')">3</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaDisponibilidade')">4</a></li>
+                                        @*<li class="page-item"><a class="page-link" onclick="ProximaPagina()">=></a></li>*@
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ///////////////////////////////////////////////////////// -->
+
+                <div id="TabTonerBaixo" style="display:none" class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Toner Baixo</h4>
+                        <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table id="TabelaTonerBaixo" class="table table-hover">
+                            <thead class="text-warning">
+                            <th>ID</th>
+                            <th>Ambiente</th>
+                            <th>IP</th>
+                            <th>Toner</th>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var eqp in db.vw_suprimentos2.ToList().OrderBy(x => x.Toner))
+                                    {
+                                        <tr>
+                                            <td>@eqp.idEquipamento</td>
+                                            <td>@eqp.Ambiente</td>
+                                            <td>@eqp.ip</td>
+                                            <td>
+                                                @if (eqp.Toner < 20)
+                                                {<label class="text-danger">@eqp.Toner</label> }
+                                            else if (eqp.Toner > 20)
+                                            {<label class="text-success">@eqp.Toner</label>}
                                         else
-                                        {<label class="text-success">Online</label>}
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-
-                </table>
-                <div class="row">
-                    <div class="col-md-12" style="text-align:center">
-                        <nav aria-label="Navegação de página exemplo">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaDisponibilidade')">1</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaDisponibilidade')">2</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaDisponibilidade')">3</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaDisponibilidade')">4</a></li>
-                                @*<li class="page-item"><a class="page-link" onclick="ProximaPagina()">=></a></li>*@
-                            </ul>
-                        </nav>
+                                        {<label>Sem Leitura</label>}
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center">
+                                <nav aria-label="Navegação de página exemplo">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
+                                        <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
+                                        @*<li class="page-item"><a class="page-link" onclick="ProximaPagina()">=></a></li>*@
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- ///////////////////////////////////////////////////////// -->
-
-        <div id="TabTonerBaixo" style="display:none" class="card">
-            <div class="card-header card-header-info">
-                <h4 class="card-title">Toner Baixo</h4>
-                <p class="card-category">Atualizado em @DateTime.Now.ToString()</p>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <canvas id="ChartTopUser" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Top 5 Usuarios</h4>
+                        <p class="card-category">
+                            Top 5 usuarios que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> Atualizado em  @DateTime.Now
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body table-responsive">
-                <table id="TabelaTonerBaixo" class="table table-hover">
-                    <thead class="text-warning">
-                    <th>ID</th>
-                    <th>Ambiente</th>
-                    <th>IP</th>
-                    <th>Toner</th>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var eqp in db.vw_suprimentos2.ToList().OrderBy(x => x.Toner))
-                            {
-                                <tr>
-                                    <td>@eqp.idEquipamento</td>
-                                    <td>@eqp.Ambiente</td>
-                                    <td>@eqp.ip</td>
-                                    <td>
-                                        @if (eqp.Toner < 20)
-                                        {<label class="text-danger">@eqp.Toner</label> }
-                                    else if (eqp.Toner > 20)
-                                    {<label class="text-success">@eqp.Toner</label>}
-                                else
-                                {<label>Sem Leitura</label>}
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-                <div class="row">
-                    <div class="col-md-12" style="text-align:center">
-                        <nav aria-label="Navegação de página exemplo">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" onclick="Paginar1('TabelaTonerBaixo')">1</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar2('TabelaTonerBaixo')">2</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar3('TabelaTonerBaixo')">3</a></li>
-                                <li class="page-item"><a class="page-link" onclick="Paginar4('TabelaTonerBaixo')">4</a></li>
-                                @*<li class="page-item"><a class="page-link" onclick="ProximaPagina()">=></a></li>*@
-                            </ul>
-                        </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-chart">
+                    <div class="card-header card-header-success">
+                        <canvas id="ChartTopUserPrinter" style="background-color:white; padding-top:10px;padding-right:10px"></canvas>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Top 5 Usuarios "Printer"</h4>
+                        <p class="card-category">
+                            Top 5 usuarios "Printer" que mais produziram no mês de @DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"))
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> Atualizado em @DateTime.Now
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     var ctx = document.getElementById("ChartVolume").getContext('2d');
@@ -315,6 +347,8 @@
             labels: ["D","S", "T", "Q", "Q", "S", "S"],
             datasets: [{
                 label: [],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255,99,132,1)',
                 data: [@Model.First().dom.Value, @Model.First().seg.Value, @Model.First().ter.Value, @Model.First().qua.Value, @Model.First().qui.Value, @Model.First().sex.Value, @Model.First().sab.Value],
                 //backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                 borderWidth: 1
@@ -328,8 +362,13 @@
                     }
                 }]
             },
+            responsive: true,
             legend: {
                 display: false
+            },
+            title: {
+                display: true,
+                text: 'Volume Semanal'
             }
         }
 
@@ -363,7 +402,9 @@
 <script>
     DefaultLinhasDashboard();
 </script>
-
+<script type="text/javascript">
+    
+</script>
 
 
 

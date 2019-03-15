@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Site.Models.CadastroSetor>
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Site.Models.CadastroSetor>
+@*@model IEnumerable<Site.Models.CadastroSetor>*@
 
 @{
     ViewBag.Title = "Setores";
@@ -13,7 +16,7 @@
         <p>
             @Html.ActionLink("Novo", "Create")
         </p>
-        <table  id="tabelaSetores" class="table table-hover table-striped">
+        <table id="tabelaSetores" class="table table-hover table-striped">
             <tr>
                 <th>
                     Unidade
@@ -55,28 +58,48 @@
 
         </table>
         <div class="row">
+            <div class="col-md-12">
+                <nav>
+
+                    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }),
+                   new PagedListRenderOptions {
+                       MaximumPageNumbersToDisplay = 5,
+                       LinkToLastPageFormat = "Última",
+                       LinkToFirstPageFormat = "Inicial",
+                       LinkToPreviousPageFormat = "Anterior",
+                       LinkToNextPageFormat= "Próxima",
+                       UlElementClasses = new List<string>{ "pagination justify-content-center" },
+                       LiElementClasses =  new List<string> { "page-item" },
+                       ContainerDivClasses = new List<string> {""}
+                   })
+
+                </nav>
+            </div>
+        </div>
+
+        @*<div class="row">
             <div class="col-md-12" style="text-align:center">
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabelaSetores')" >Anterior</button>
+                    <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabelaSetores')">Anterior</button>
                     <button type="text" class="npag btn-secondary" disabled>1</button>
-                    <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabelaSetores')" >Proxima</button>
+                    <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabelaSetores')">Proxima</button>
                 </div>
                 @*<nav aria-label="Navegação de página exemplo">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a id="Anterior" class="btn-link" onclick="AnteriorPagina('tabelaSetores')">
-                                <button class="btn-primary">
-                                    Anterior
-                                </button>
-                            </a>
-                        </li>
-                        <li><label class="npag">1</label></li>
-                        <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabelaSetores')">=></a></li>
-                    </ul>
-                </nav>*@
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a id="Anterior" class="btn-link" onclick="AnteriorPagina('tabelaSetores')">
+                                    <button class="btn-primary">
+                                        Anterior
+                                    </button>
+                                </a>
+                            </li>
+                            <li><label class="npag">1</label></li>
+                            <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabelaSetores')">=></a></li>
+                        </ul>
+                    </nav>
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
 

@@ -1,0 +1,194 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Site.Models.vw_bilhetagemAtual>
+
+<div class="card-header card-header-primary">
+    <div class="row">
+        <div class="col-md-6" style="text-align:start"><h2>Relatorio de Faturamento</h2></div>
+        <div class="col-md-6" style="text-align:end">
+            <button class="btn btn-secondary" disabled>Exportar</button>
+            <button class="btn btn-secondary" id="VisualizarFaturamento" onclick="">Visualizar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Index"))
+            {
+                //Espaço para Os Filtros
+                <div class="input-group no-border">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="row">
+                                Data Inicial
+                            </div>
+                            <div class="row">
+                                <input type="date" value="@ViewBag.DtIniFatura" id="DtIniFatura" name="DtIniFatura" class="form-control" style="color: white;" required="required">
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                Data Final
+                            </div>
+                            <div class="row">
+                                <input type="date" value="@ViewBag.DtFimFatura" id="DtFimFatura" name="DtFimFatura" class="form-control" style="color: white;" required="required">
+                            </div>
+
+                        </div>
+                        <div class="col-md-1">
+
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <table id="tabRelatorioFaturamento" class="table table-hover table-striped" style="text-align:center">
+        <tr>
+            <th>
+
+                CC
+            </th>
+            <th>
+
+                Setor
+            </th>
+            <th>
+
+                Serie
+            </th>
+            <th>
+
+                Nome
+            </th>
+            <th>
+
+                IP
+            </th>
+
+            <th>
+
+                Inicio<br />Total
+            </th>
+
+            <th>
+
+                Final<br />Total
+            </th>
+            <th>
+
+                Modelo
+            </th>
+            <th>
+
+                Franquia
+            </th>
+            <th>
+
+                Valor
+            </th>
+            <th>
+
+                Volume
+            </th>
+            <th>
+
+                VolTotal
+            </th>
+            <th></th>
+        </tr>
+
+
+        @{
+
+            foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+
+                        @item.CC
+                    </td>
+                    <td>
+
+                        @item.setor
+                    </td>
+                    <td>
+
+                        @item.serie
+                    </td>
+                    <td>
+
+                        @item.nome
+                    </td>
+                    <td>
+
+                        @item.ip
+                    </td>
+                    <td>
+
+                        @item.Initotal
+                    </td>
+                    <td>
+
+                        @item.Fintotal
+                    </td>
+                    <td>
+
+                        @item.Modelo
+                    </td>
+                    <td>
+
+                        @item.franquia
+                    </td>
+                    <td>
+
+                        @item.valor
+                    </td>
+                    <td>
+
+                        @item.Volume
+                    </td>
+                    <td>
+
+                        @item.VolumeTotal
+                    </td>
+
+                </tr>
+            }
+
+        }
+
+    </table>
+    <div class="row">
+        <div class="col-md-12">
+            <nav>
+
+                @Html.PagedListPager(Model, pageFaturamento => Url.Action("Index", new { pageFaturamento }),
+               new PagedListRenderOptions {
+                   MaximumPageNumbersToDisplay = 5,
+                   LinkToLastPageFormat = "Última",
+                   LinkToFirstPageFormat = "Inicial",
+                   LinkToPreviousPageFormat = "Anterior",
+                   LinkToNextPageFormat= "Próxima",
+                   UlElementClasses = new List<string>{ "pagination justify-content-center" },
+                   LiElementClasses =  new List<string> { "page-item" },
+                   ContainerDivClasses = new List<string> {""}
+               })
+
+            </nav>
+        </div>
+    </div>
+</div>

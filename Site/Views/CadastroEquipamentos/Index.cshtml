@@ -1,9 +1,14 @@
-﻿@{
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Site.Models.CadastroEquipamentos>
+
+
+@{
     ViewBag.Title = "Equipamentos";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-@model IEnumerable<Site.Models.CadastroEquipamentos>
+@*@model IEnumerable<Site.Models.CadastroEquipamentos>*@
 
 
 <div class="card">
@@ -82,6 +87,25 @@
 
         </table>
         <div class="row">
+            <div class="col-md-12">
+                <nav>
+
+                    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }),
+                   new PagedListRenderOptions {
+                       MaximumPageNumbersToDisplay = 5,
+                       LinkToLastPageFormat = "Última",
+                       LinkToFirstPageFormat = "Inicial",
+                       LinkToPreviousPageFormat = "Anterior",
+                       LinkToNextPageFormat= "Próxima",
+                       UlElementClasses = new List<string>{ "pagination justify-content-center" },
+                       LiElementClasses =  new List<string> { "page-item" },
+                       ContainerDivClasses = new List<string> {""}
+                   })
+
+                </nav>
+            </div>
+        </div>
+        @*<div class="row">
             <div class="col-md-12" style="text-align:center">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabelaEquipamentos')">Anterior</button>
@@ -89,15 +113,15 @@
                     <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabelaEquipamentos')">Proxima</button>
                 </div>
 
-                @*<nav aria-label="Navegação de página exemplo">
+                <nav aria-label="Navegação de página exemplo">
                     <ul class="pagination justify-content-center">
                         <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabelaEquipamentos')"><=</a></li>
                         <li><label class="npag">1</label></li>
                         <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabelaEquipamentos')">=></a></li>
                     </ul>
-                </nav>*@
+                </nav>
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Site.Models;
+using PagedList;
 
 namespace Site.Controllers
 {
@@ -15,10 +16,12 @@ namespace Site.Controllers
         private ModeldnaPrint db = new ModeldnaPrint();
 
         // GET: CadastroSetors
-        public ActionResult Index()
+        public ActionResult Index(int? pagina = 1)
         {
             var cadastroSetor = db.CadastroSetor.Include(c => c.CadastroUnidade);
-            return View(cadastroSetor.Where(x => x.status == "1").ToList());
+            
+
+            return View(cadastroSetor.Where(x => x.status == "1").ToList().ToPagedList((int)pagina, 10));
         }
 
         // GET: CadastroSetors/Details/5
