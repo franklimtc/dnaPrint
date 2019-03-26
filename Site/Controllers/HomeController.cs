@@ -48,7 +48,17 @@ namespace Site.Controllers
                 nSupriBaixo = quantSupri;
             #endregion
 
-            ViewBag.Volume = $"{db.vw_bilhetagemAtual.First().VolumeTotal}";
+            try
+            {
+                ViewBag.Volume = $"{db.vw_bilhetagemAtual.First().VolumeTotal}";
+            }
+            catch (Exception)
+            {
+                ViewBag.Volume = $"Erro de base Vazia";
+                //throw;
+            }
+
+            //ViewBag.Volume = $"{db.vw_bilhetagemAtual.Where(x=>x.cidade.Equals("tetse")).First().VolumeTotal}";
             try
             {
                 int quantFalha = db.vw_ErrosEquipamentos.Sum(x => x.Erros).Value;
@@ -66,14 +76,25 @@ namespace Site.Controllers
                 ViewBag.Falhas = $"0";
             }
 
-            var tempBilhetagemSemanal = db.tempBilhetagemSemanal;
+            //var tempBilhetagemSemanal = db.tempBilhetagemSemanal;
+            List<tempBilhetagemSemanal> tempBilhetagemSemanalLista = new List<tempBilhetagemSemanal>(); ;
+            try
+            {
+                tempBilhetagemSemanalLista = db.tempBilhetagemSemanal.ToList();
+            }
+            catch (Exception)
+            {
+                
+                var retorno = tempBilhetagemSemanalLista;
+                //throw;
+            }
             //var tempBilhetagemSemanal = db.CadastroEquipamentos.Include(c => c.)
             string usuuario = User.Identity.Name;
             usuuario = usuuario.Split('@').First();
             ViewBag.Usuario = usuuario;
         
            
-           return View(tempBilhetagemSemanal.ToList());
+           return View(tempBilhetagemSemanalLista);
 
 
         }

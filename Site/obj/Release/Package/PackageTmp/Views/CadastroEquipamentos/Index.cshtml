@@ -1,77 +1,141 @@
-﻿@{
-    ViewBag.Title = "Lista de Equipamentos";
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Site.Models.CadastroEquipamentos>
+
+
+@{
+    ViewBag.Title = "Equipamentos";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
-@model IEnumerable<Site.Models.CadastroEquipamentos>
+@*@model IEnumerable<Site.Models.CadastroEquipamentos>*@
 
-<p>
-    @Html.ActionLink("Novo", "Create")
-</p>
-<table class="table table-hover table-striped">
-    <tr>
-        <th>
-            UF
-        </th>
-        <th>
-            Cidade
-        </th>
-        <th>
-            Unidade
-        </th>
-        <th>
-            Setor
-        </th>
 
-        <th>
-            IP
-        </th>
-        <th>
-            Série
-        </th>
-        <th>
-            Fila
-        </th>
-        <th>
-            Data Ativação
-        </th>
+<div class="card">
+    <div class="card-header card-header-primary">
+        <h2 class="card-title">Lista de Equipamentos</h2>
+    </div>
+    <div class="card-body">
+        <p>
+            @Html.ActionLink("Novo", "Create")
+        </p>
+        <table id="tabelaEquipamentos" class="table table-hover table-striped">
+            <tr>
+                <th>
+                    UF
+                </th>
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    Unidade
+                </th>
+                <th>
+                    Setor
+                </th>
 
-        <th></th>
-    </tr>
+                <th>
+                    IP
+                </th>
+                <th>
+                    Série
+                </th>
+                <th>
+                    Fila
+                </th>
+                <th>
+                    Data Ativação
+                </th>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CadastroEstado.UF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CadastroCidade.cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CadastroUnidade.descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CadastroSetor.descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.serie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dtAtivacao)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.idEquipamento }) |
-                @*@Html.ActionLink("Details", "Details", new { id = item.idEquipamento }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id = item.idEquipamento })
-            </td>
-        </tr>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CadastroEstado.UF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CadastroCidade.cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CadastroUnidade.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CadastroSetor.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ip)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.serie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dtAtivacao)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idEquipamento }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.idEquipamento }) |*@
+                        @Html.ActionLink("Deletar", "Delete", new { id = item.idEquipamento })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+
+                    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }),
+                   new PagedListRenderOptions {
+                       MaximumPageNumbersToDisplay = 5,
+                       LinkToLastPageFormat = "Última",
+                       LinkToFirstPageFormat = "Inicial",
+                       LinkToPreviousPageFormat = "Anterior",
+                       LinkToNextPageFormat= "Próxima",
+                       UlElementClasses = new List<string>{ "pagination justify-content-center" },
+                       LiElementClasses =  new List<string> { "page-item" },
+                       ContainerDivClasses = new List<string> {""}
+                   })
+
+                </nav>
+            </div>
+        </div>
+        @*<div class="row">
+            <div class="col-md-12" style="text-align:center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button id="Anterior" type="button" class="btn btn-secondary" onclick="AnteriorPagina('tabelaEquipamentos')">Anterior</button>
+                    <button type="text" class="npag btn-secondary" disabled>1</button>
+                    <button id="Proxima" type="button" class="btn btn-secondary" onclick="ProximaPagina('tabelaEquipamentos')">Proxima</button>
+                </div>
+
+                <nav aria-label="Navegação de página exemplo">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a id="Anterior" class="page-link" onclick="AnteriorPagina('tabelaEquipamentos')"><=</a></li>
+                        <li><label class="npag">1</label></li>
+                        <li class="page-item"><a id="Proxima" class="page-link" onclick="ProximaPagina('tabelaEquipamentos')">=></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+<script>
+    DefaultLinhasEquipamentos();
+    function DefaultLinhasEquipamentos() {
+        var tabela = document.getElementById("tabelaEquipamentos");
+        var linhas = tabela.rows;
+        for (var i = 1; i < linhas.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas[i].style.display = "table-row";
+            } else {
+                linhas[i].style.display = "none";
+            }
+        }
     }
-
-</table>
+</script>

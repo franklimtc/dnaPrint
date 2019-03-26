@@ -1056,6 +1056,7 @@
     <Content Include="Views\Relatorios\Index.cshtml" />
     <Content Include="Views\Relatorios\ArquivosImpr.cshtml" />
     <Content Include="Views\Relatorios\RalatorioFaturamento.cshtml" />
+    <Content Include="Views\Relatorios\RelatSuprimentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

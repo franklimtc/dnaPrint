@@ -1,122 +1,131 @@
 ﻿@model Site.Models.CadastroEquipamentos
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Equipamentos";
     Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 
 }
 
-<h2>Edit</h2>
+<div class="card">
+    <div class="card-header card-header-primary">
+        <h2 class="card-title">Editar equipamento</h2>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-
-
-    <div class="form-horizontal">
-        <h4>CadastroEquipamentos</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.idEquipamento)
-
-        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label class="control-label">UF</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(modelItem => Model.CadastroEstado.UF)
-                            </div>
-                            <div class="col-md-2">
-                                <label class="control-label">Cidade</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(modelItem => Model.CadastroCidade.cidade)
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label>Unidade</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(model => model.CadastroUnidade.descricao)
-                            </div>
-                            <div class="col-md-2">
-                                <label>Setor</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(model => model.CadastroSetor.descricao)
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label>Fabricante</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(model => model.CadastroEquipamentoModelo.Fabricante)
-                            </div>
-                            <div class="col-md-2">
-                                <label>Modelo</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(model => model.CadastroEquipamentoModelo.Modelo)
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label>Série</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.DisplayFor(model => model.serie)
-                            </div>
-                            <div class="col-md-2">
-                                <label>Nome</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label>IP</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.ip, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ip, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-2">
-                                <label>Status</label>
-                            </div>
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <label>UF</label><br />
+                    @Html.DisplayFor(modelItem => Model.CadastroEstado.UF)
+                </div>
+                <div class="col-md-3">
+                    <label>Cidade</label><br />
+                    @Html.DisplayFor(modelItem => Model.CadastroCidade.cidade)
+                </div>
+                <div class="col-md-3">
+                    <label>Unidade</label><br />
+                    @Html.DisplayFor(model => model.CadastroUnidade.descricao)
+                </div>
+                <div class="col-md-3">
+                    <label>Setor</label><br />
+                    @Html.DisplayFor(model => model.CadastroSetor.descricao)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Fabricante</label><br />
+                    @Html.DisplayFor(model => model.CadastroEquipamentoModelo.Fabricante)
+                </div>
+                <div class="col-md-3">
+                    <label>Modelo</label><br />
+                    @Html.DisplayFor(model => model.CadastroEquipamentoModelo.Modelo)
+                </div>
+                <div class="col-md-3">
+                    <label>Série</label><br />
+                    @Html.DisplayFor(model => model.serie)
+                    @Html.HiddenFor(model => model.serie)
                 </div>
                 <div class="col-md-3"></div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <hr />
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Nome</label><br />
+                    @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label>IP</label><br />
+                    @Html.EditorFor(model => model.ip, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ip, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3">
+                    <label>Ativo</label><br />
+                    @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-3"></div>
             </div>
-        </div>
+   
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="border-bottom:none">
+                            <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="text-align:center">
+                            <div id="ContExclamacao">
+                                <svg width="300" height="200" viewBox="0 0 300 200" style="display:flex;margin-left:85px">
+                                    <g id="content" transform="translate(150, 100)">
+                                        <circle cx="0" cy="0" r="70" stroke="green" stroke-width="1" fill="transparent" />
+                                    </g>
+                                    <polygon points="100,90 140,120 220,50 225,38 140,110 100,83" style="fill:green;stroke:green;stroke-width:1; margin-left:90px" />
+                                </svg>
+                                <label style="font-family:MinhaFonte; font-size:25px">Atualizado</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="border-top:none">
+                            @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>*@
+                            @*@using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Deletar" class="btn btn-danger" id="delete"  data-target="#exampleModalCenter" data-toggle="modal">/>
+                                </div>
+                            }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.idEquipamento)
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Atualizar" class="btn btn-primary" data-target="#exampleModalCenter" data-toggle="modal" />
+                    </div>
+                </div>
+            </div>
+        }
+
     </div>
-}
+</div>
+
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

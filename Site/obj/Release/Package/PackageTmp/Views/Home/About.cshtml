@@ -1,7 +1,194 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Relatorios";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<div id="Relatorios">
+    <style runat="server" rel="stylesheet" type="text/css" scoped="scoped">
+        @@import url(../../book/css/book.css);
+        @@import url(../../book/css/normalize.css);
+    </style>
 
-<p>Use this area to provide additional information.</p>
+    <div class="component">
+        <ul class="align">
+            <li>
+                <figure class='book'>
+
+                    <!-- Front -->
+
+                    <ul class='hardcover_front'>
+                        <li>
+                            <div class="coverDesign yellow">
+                                @*<span class="ribbon">NEW</span>*@
+                                <h1 style="font-size:1.7em">Contadores</h1>
+                                <p>Relatorio de Contadores</p>
+                            </div>
+                        </li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Pages -->
+
+                    <ul class='page'>
+                        <li></li>
+                        <li>
+                            <a class="btn" href="#">Download</a>
+                        </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Back -->
+
+                    <ul class='hardcover_back'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class='book_spine'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <figcaption>
+                        <h1>Relatorio de Contadores</h1>
+                        <span>By Marco Barría for Codrops</span>
+                        <p>Tomatillo water chestnut mustard cabbage yarrow sierra leone bologi. Watercress green bean groundnut earthnut pea dandelion radicchio.</p>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class='book'>
+
+                    <!-- Front -->
+
+                    <ul class='hardcover_front'>
+                        <li>
+                            <div class="coverDesign blue">
+                                <h1>JS</h1>
+                                <p>FUNCTION</p>
+                            </div>
+                        </li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Pages -->
+
+                    <ul class='page'>
+                        <li></li>
+                        <li>
+                            <a class="btn" href="#">Download</a>
+                        </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Back -->
+
+                    <ul class='hardcover_back'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class='book_spine'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <figcaption>
+                        <h1>Storm JS</h1>
+                        <span>By Marco Barría for Codrops</span>
+                        <p>Leek winter purslane sierra leone bologi caulie tomatillo soko turnip greens bunya nuts silver beet melon green bean celery. Gram kakadu plum wakame.</p>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class='book'>
+
+                    <!-- Front -->
+
+                    <ul class='hardcover_front'>
+                        <li>
+                            <div class="coverDesign grey">
+                                <span class="ribbon">Nº1</span>
+                                <h1>HTML5</h1>
+                                <p>CANVAS</p>
+                            </div>
+                        </li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Pages -->
+
+                    <ul class='page'>
+                        <li></li>
+                        <li>
+                            <a class="btn" href="#">Download</a>
+                        </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Back -->
+
+                    <ul class='hardcover_back'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class='book_spine'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <figcaption>
+                        <h1>Zen HTML5</h1>
+                        <span>By Marco Barría for Codrops</span>
+                        <p>Salsify horseradish winter purslane yarrow zucchini bush tomato aubergine cauliflower broccoli. Kohlrabi azuki bean chickpea quandong dandelion seakale.</p>
+                    </figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class='book'>
+
+                    <!-- Front -->
+
+                    <ul class='hardcover_front'>
+                        <li>
+                            <img src="img/cover.jpg" alt="" width="100%" height="100%">
+                        </li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Pages -->
+
+                    <ul class='page'>
+                        <li></li>
+                        <li>
+                            <a class="btn" href="#">Download</a>
+                        </li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+
+                    <!-- Back -->
+
+                    <ul class='hardcover_back'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class='book_spine'>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <figcaption>
+                        <h1>Papelucho Perdido</h1>
+                        <span>By Marcela Paz</span>
+                        <p>Fennel bamboo shoot pea sprouts rutabaga parsnip green bean gram wattle seed lentil horseradish nori. Grape lettuce turnip greens.</p>
+                    </figcaption>
+                </figure>
+            </li>
+        </ul>
+    </div>
+
+
+
+</div>
+<script runat="server" src="~/book/js/modernizr.custom.js" />

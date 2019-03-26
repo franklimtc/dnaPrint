@@ -1,0 +1,58 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model Site.Models.ModeloVWRelatorios
+
+@{
+    ViewBag.Title = "Relatorios";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" id="RelatorioFaturamento">
+            @Html.Partial("RalatorioFaturamento", Model.Faturamento)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" id="RelatorioArquivosImpressos">
+            @Html.Partial("ArquivosImpr", Model.ArquivosImpressos)
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    function DefaultLinhasRelatorio() {
+
+        var tabela2 = document.getElementById("tabRelatorioFaturamento");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+
+
+        var tabela2 = document.getElementById("tabRelatorioArqImpre");
+        var linhas2 = tabela2.rows;
+        for (var i = 1; i < linhas2.length; i++) {
+            if (i > 0 && i < 11) {
+                linhas2[i].style.display = "table-row";
+            } else {
+                linhas2[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<script>
+    DefaultLinhasRelatorio();
+</script>

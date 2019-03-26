@@ -55,6 +55,7 @@ namespace Site.Controllers
         {
             if (ModelState.IsValid)
             {
+                cadastroSetor.status = "1";
                 db.CadastroSetor.Add(cadastroSetor);
                 db.SaveChanges();
                 return RedirectToAction("Index");

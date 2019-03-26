@@ -79,7 +79,8 @@ namespace Site.Controllers
         #endregion
 
         // Get: Relatorios Com Paginação
-        public ActionResult Index(DateTime? DtIniArq , DateTime? DtFimArq,string valorArq, DateTime? DtIniFatura, DateTime? DtFimFatura,int? pageFaturamento = 1,int? pageArquivoImpr = 1 )
+        public ActionResult Index(DateTime? DtIniArq , DateTime? DtFimArq,string valorArq, DateTime? DtIniFatura, DateTime? DtFimFatura,
+            int? pageFaturamento = 1,int? pageArquivoImpr = 1 , int? pageRelatSupri = 1)
         {
             ModeloVWRelatorios retorno = new ModeloVWRelatorios();
             
@@ -154,6 +155,12 @@ namespace Site.Controllers
                 retorno.Faturamento = db.vw_bilhetagemAtual.Take(1000).ToList().ToPagedList((int)pageFaturamento, 10);
             }
             #endregion
+
+            #region Suprimentos
+            retorno.vw_Suprimentos2 = db.vw_suprimentos2.ToList().ToPagedList((int)pageRelatSupri, 10);
+            #endregion
+
+
 
             return View(retorno);
         }
